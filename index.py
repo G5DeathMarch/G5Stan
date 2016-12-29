@@ -3,8 +3,11 @@ from flask import Flask, request
 from commands import getImage, cheerUp
 app = Flask(__name__)
 
+# This is a dictionary that uses the group ID as the key
+# and the Bot ID as the value
 bot_ids = {
 	'25759439':'6dde2d1f7ffcf21e690d6061bd'
+	'27647802':'73b1c786742081243a7e44b2d7'
 }
 
 @app.route('/', methods=['POST'])
