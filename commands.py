@@ -24,9 +24,8 @@ def getImage(searchTerm, bot_id):
 	}
 	request = requests.get(url, params=payload)
 	# lets grab a random gif from the returned images.
-	request_size = len(request.json()['data'])
-	gif_index = random.randint(0, request_size - 1)
-	message = request.json()['data'][gif_index]['images']['downsized']['url']
+	gif = random.choice(reqest.json()['data'])
+	message = gif['images']['downsized']['url']
 	botMessage(message, id)
 	
 def cheerUp(bot_id):
