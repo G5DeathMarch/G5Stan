@@ -2,6 +2,7 @@ import requests
 import sys
 import random
 
+GIF_LIMIT = 10
 
 #sends a standard message to the group
 def botMessage(message, bot_id):
@@ -18,7 +19,7 @@ def getImage(searchTerm, bot_id):
 	id = bot_id
 	payload = {
 		'q':searchTerm,
-		'limit':'1',
+		'limit': GIF_LIMIT,
 		'api_key':key
 	}
 	request = requests.get(url, params=payload)
