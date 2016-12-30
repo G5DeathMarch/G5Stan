@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request
-from commands import getImage, cheerUp
+from commands import getImage, cheerUp, emptySearch
 app = Flask(__name__)
 
 # This is a dictionary that uses the group ID as the key
@@ -22,6 +22,8 @@ def result():
 		# If we actually have something
 		if searchTerm:
 			getImage(searchTerm, bot_id)
+		else:
+			emptySearch(bot_id)
 
 	#send cheerUp message
 	elif message['text'].startswith('/cheerup'):
