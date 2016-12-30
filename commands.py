@@ -36,7 +36,9 @@ def cheerUp(bot_id):
 
 	
 def invalidSearch(bot_id):
-	pass
+	with open('failed_search.txt') as sayings:
+		message = random.choice(sayings.readlines())
+		botMessage(message, bot_id)
 
 #def atGroup(bot_id):
 
