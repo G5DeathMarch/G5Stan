@@ -21,6 +21,7 @@ def result():
 		searchTerm = message['text'][5:]
 		# If we actually have something that is more than a space
 		if searchTerm and not searchTerm.isspace():
+			print('Valid search')
 			getImage(searchTerm, bot_id)
 		else:
 			emptySearch(bot_id)
