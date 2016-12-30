@@ -19,7 +19,10 @@ def result():
 	#send .gif message
 	if message['text'].startswith('/gif '):
 		searchTerm = message['text'][5:]
-		getImage(searchTerm, bot_id)
+		# If we actually have something
+		if searchTerm:
+			getImage(searchTerm, bot_id)
+
 	#send cheerUp message
 	elif message['text'].startswith('/cheerup'):
 		cheerUp(bot_id)
