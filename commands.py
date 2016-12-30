@@ -22,11 +22,16 @@ def getImage(searchTerm, bot_id):
 		'limit': GIF_LIMIT,
 		'api_key':key
 	}
-	request = requests.get(url, params=payload)
-	# lets grab a random gif from the returned images.
-	gif = random.choice(request.json()['data'])
-	message = gif['images']['downsized']['url']
-	botMessage(message, id)
+	try:
+		request = requests.get(url, params=payload)
+		# lets grab a random gif from the returned images.
+		gif = random.choice(request.json()['data'])
+		message = gif['images']['downsized']['url']
+		botMessage(message, id)
+	except:
+		# If we failed to find something from our search,
+		# we send back an error message. Stan style.
+		invalidSearch(id)
 	
 def cheerUp(bot_id):
 	with open('compliments.txt') as compliments:
@@ -37,7 +42,9 @@ def cheerUp(bot_id):
 # If Stan received an empty string to search, we're going
 # to send back an error message.
 def emptySearch(bot_id):
-	botMessage('You have to give me something!', bot_id)
+	with open('empty_search.txt') as sayings:
+		message = random.choice(sayings.readlines())
+		botMessage(message, bot_id)
 
 def invalidSearch(bot_id):
 	with open('failed_search.txt') as sayings:
