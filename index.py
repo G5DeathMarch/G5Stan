@@ -24,6 +24,7 @@ def result():
 			print('Valid search')
 			getImage(searchTerm, bot_id)
 		else:
+			print('EMPTY SEARCH')
 			emptySearch(bot_id)
 
 	#send cheerUp message
