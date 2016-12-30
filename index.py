@@ -18,7 +18,9 @@ def result():
 	bot_id = bot_ids[message['group_id']]
 	#send .gif message
 	if message['text'].startswith('/gif '):
+		print(message['text'])
 		searchTerm = message['text'][5:]
+		print(searchTerm)
 		# If we actually have something that is more than a space
 		if searchTerm and not searchTerm.isspace():
 			print('Valid search')
