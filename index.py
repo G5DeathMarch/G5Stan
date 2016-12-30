@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request
-from commands import getImage, cheerUp, emptySearch
+from commands import getImage, cheerUp
 app = Flask(__name__)
 
 # This is a dictionary that uses the group ID as the key
@@ -18,16 +18,10 @@ def result():
 	bot_id = bot_ids[message['group_id']]
 	#send .gif message
 	if message['text'].startswith('/gif '):
-		print(message['text'])
 		searchTerm = message['text'][5:]
-		print(searchTerm)
 		# If we actually have something that is more than a space
 		if searchTerm and not searchTerm.isspace():
-			print('Valid search')
 			getImage(searchTerm, bot_id)
-		else:
-			print('EMPTY SEARCH')
-			emptySearch(bot_id)
 
 	#send cheerUp message
 	elif message['text'].startswith('/cheerup'):
