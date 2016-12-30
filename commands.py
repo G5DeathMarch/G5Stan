@@ -36,6 +36,7 @@ def cheerUp(bot_id):
 
 	
 def invalidSearch(bot_id):
+	pass
 
 #def atGroup(bot_id):
 
