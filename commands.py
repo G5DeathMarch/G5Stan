@@ -42,7 +42,9 @@ def cheerUp(bot_id):
 # If Stan received an empty string to search, we're going
 # to send back an error message.
 def emptySearch(bot_id):
+	print('made it to empty search')
 	with open('empty_search.txt') as sayings:
+		print('opened the file')
 		message = random.choice(sayings.readlines())
 		botMessage(message, bot_id)
 
