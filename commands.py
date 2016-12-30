@@ -29,11 +29,14 @@ def getImage(searchTerm, bot_id):
 	botMessage(message, id)
 	
 def cheerUp(bot_id):
-	compliments = open('compliments.txt')
-	message = random.choice(compliments.readlines())
-	id = bot_id
-	botMessage(message, bot_id)
+	with open('compliments.txt') as compliments:
+		message = random.choice(compliments.readlines())
+		id = bot_id
+		botMessage(message, bot_id)
+
 	
+def invalidSearch(bot_id):
+
 #def atGroup(bot_id):
 
 	
