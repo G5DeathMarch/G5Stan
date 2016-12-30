@@ -19,9 +19,7 @@ def result():
 	#send .gif message
 	if message['text'].startswith('/gif '):
 		searchTerm = message['text'][5:]
-		# If we actually have something that is more than a space
-		if searchTerm:
-			getImage(searchTerm, bot_id)
+		getImage(searchTerm, bot_id)
 
 	#send cheerUp message
 	elif message['text'].startswith('/cheerup'):
