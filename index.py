@@ -7,6 +7,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def result():
+	#receive JSON from groupme request containing message information		
+ 	message = request.get_json(force=True)
 	#retrieve the appropriate bot_id from the JSON
 	bot_id = os.environ.get('BOT_ID')
 	#send .gif message
