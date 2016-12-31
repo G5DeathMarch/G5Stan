@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request
 from commands import getImage, cheerUp
-from config import *
+from boto.s3.connection import S3Connection
 app = Flask(__name__)
 
 
