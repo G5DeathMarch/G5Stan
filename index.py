@@ -1,14 +1,14 @@
 import os
 from flask import Flask, request
 from commands import getImage, cheerUp
-from boto.s3.connection import S3Connection
+import os
 app = Flask(__name__)
 
 
 @app.route('/', methods=['POST'])
 def result():
 	#retrieve the appropriate bot_id from the JSON
-	bot_id = BOT_ID
+	bot_id = os.environ.get('BOT_ID')
 	#send .gif message
 	if message['text'].startswith('/gif '):
 		searchTerm = message['text'][5:]
