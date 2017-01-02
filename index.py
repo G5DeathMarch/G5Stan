@@ -20,7 +20,7 @@ def result():
 		commands.cheerUp(bot_id)
 	# Help message
 	elif message['text'].startswith('/helpmestan'):
-		details = inspect.getcomments(commands)
+		details = message['text'][5:]
 		commands.helpMeStan(bot_id, details)
 	return "Success"
 	

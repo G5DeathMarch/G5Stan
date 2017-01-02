@@ -5,14 +5,10 @@ from utility import botMessage, invalidSearch
 
 GIF_LIMIT = 20
 
-# ALL THE 'PYDOCS' (""") ARE USED FOR WHEN SOMEONE NEEDS HELP,
-# NOT ACTUAL PYDOCS
-
-# Searches the GIFY API for a gif that matches the search term.
 def getImage(searchTerm, bot_id):
 	"""
-	/gif [searchTerm]: I try to find a gif that is relevant to
-	the search term. Keyword is TRY.
+	Stan searches the GIFY API for a gif that matches the search 
+	term.
 	"""
 	url = "http://api.giphy.com/v1/gifs/search"
 	key = "dc6zaTOxFJmzC"
@@ -35,26 +31,26 @@ def getImage(searchTerm, bot_id):
 	
 def cheerUp(bot_id):
 	"""
-	/cheerup: Everyone has a bad day and needs a pick-me-up. I
-	gotchu.
+	Stan sends a message that will cheer up the members of the group
+	chat.
 	"""
 	with open('compliments.txt') as compliments:
 		message = random.choice(compliments.readlines())
 		id = bot_id
 		botMessage(message, bot_id)
 
-def helpMeStan(bot_id, all_details):
+def helpMeStan(bot_id, detail):
 	"""
-	/helpmestan: I let you know what I can do.
-	"""
+	Will take the detail what exactly Stan can do.
+	If the detail is empty it will just print out the command
+	names. If there is a detail it will try and print out the
+	specifics of that command, or send an error if it can't find
+	the command.
 
-	# These all details come from the help function of this
-	# module, so we need to basically grab the function info
-	print(type(all_details))
-	print(all_details)
-	# after_functions = all_details.split("FUNCTIONS", 1)[1]
-	# function_info = after_functions.split("DATA",1)[0]
-	# print(function_data)
+	Will use the README for this information
+	"""
+	pass
+
 
 #def atGroup(bot_id):
 
