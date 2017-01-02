@@ -35,9 +35,8 @@ def cheerUp(bot_id):
 		id = bot_id
 		botMessage(message, bot_id)
 
-def helpMeStan(bot_id):
-	details = help(this)
-	print(details)
+def helpMeStan(bot_id, all_details):
+	print(all_details)
 
 #def atGroup(bot_id):
 
