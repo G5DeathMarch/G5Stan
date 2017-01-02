@@ -18,6 +18,9 @@ def result():
 	#send cheerUp message
 	elif message['text'].startswith('/cheerup'):
 		cheerUp(bot_id)
+	# Help message
+	elif message['text'].startswith('/helpmestan')
+		pass
 	return "Success"
 	
 if __name__ == '__main__':
