@@ -1,4 +1,5 @@
 import os
+import inspect
 import commands
 from flask import Flask, request
 app = Flask(__name__)
@@ -19,7 +20,7 @@ def result():
 		commands.cheerUp(bot_id)
 	# Help message
 	elif message['text'].startswith('/helpmestan'):
-		details = commands.__doc__
+		details = inspect.getcomments(commands)
 		commands.helpMeStan(bot_id, details)
 	return "Success"
 	
