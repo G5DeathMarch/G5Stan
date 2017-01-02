@@ -8,7 +8,7 @@ GIF_LIMIT = 20
 def getImage(searchTerm, bot_id):
 	"""
 	/gif [searchTerm]: I try to find a gif that is relevant to
-	the search term. 
+	the search term. Keyword is TRY.
 	"""
 	url = "http://api.giphy.com/v1/gifs/search"
 	key = "dc6zaTOxFJmzC"
@@ -30,12 +30,19 @@ def getImage(searchTerm, bot_id):
 		invalidSearch(id)
 	
 def cheerUp(bot_id):
+	"""
+	/cheerup: Everyone has a bad day and needs a pick-me-up. I
+	gotchu.
+	"""
 	with open('compliments.txt') as compliments:
 		message = random.choice(compliments.readlines())
 		id = bot_id
 		botMessage(message, bot_id)
 
 def helpMeStan(bot_id, all_details):
+	"""
+	/helpmestan: I let you know what I can do.
+	"""
 	print(all_details)
 
 #def atGroup(bot_id):
