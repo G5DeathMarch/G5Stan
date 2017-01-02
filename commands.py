@@ -51,6 +51,7 @@ def helpMeStan(bot_id, all_details):
 	# These all details come from the help function of this
 	# module, so we need to basically grab the function info
 	print(type(all_details))
+	print(all_details)
 	# after_functions = all_details.split("FUNCTIONS", 1)[1]
 	# function_info = after_functions.split("DATA",1)[0]
 	# print(function_data)
