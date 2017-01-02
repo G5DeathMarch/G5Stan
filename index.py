@@ -1,7 +1,6 @@
 import os
 from flask import Flask, request
 from commands import getImage, cheerUp
-import os
 app = Flask(__name__)
 
 
