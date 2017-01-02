@@ -1,19 +1,15 @@
 import requests
 import sys
 import random
+from utility import botMessage, invalidSearch
 
 GIF_LIMIT = 20
 
-#sends a standard message to the group
-def botMessage(message, bot_id):
-	values = {
-		'bot_id' : bot_id,
-		'text' : str(message),
-	}
-	r = requests.post('https://api.groupme.com/v3/bots/post', data = values)
-
-#retrieves gif from giphy API and sends it as a message
 def getImage(searchTerm, bot_id):
+	"""
+	/gif [searchTerm]: Takes the search term and tries
+	to find a gif that is relvant
+	"""
 	url = "http://api.giphy.com/v1/gifs/search"
 	key = "dc6zaTOxFJmzC"
 	id = bot_id
@@ -37,11 +33,6 @@ def cheerUp(bot_id):
 	with open('compliments.txt') as compliments:
 		message = random.choice(compliments.readlines())
 		id = bot_id
-		botMessage(message, bot_id)
-
-def invalidSearch(bot_id):
-	with open('failed_search.txt') as sayings:
-		message = random.choice(sayings.readlines())
 		botMessage(message, bot_id)
 
 #def atGroup(bot_id):
