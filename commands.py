@@ -7,8 +7,8 @@ GIF_LIMIT = 20
 
 def getImage(searchTerm, bot_id):
 	"""
-	/gif [searchTerm]: Takes the search term and tries
-	to find a gif that is relvant
+	/gif [searchTerm]: I try to find a gif that is relevant to
+	the search term. 
 	"""
 	url = "http://api.giphy.com/v1/gifs/search"
 	key = "dc6zaTOxFJmzC"
@@ -34,6 +34,10 @@ def cheerUp(bot_id):
 		message = random.choice(compliments.readlines())
 		id = bot_id
 		botMessage(message, bot_id)
+
+def helpMeStan(bot_id):
+	details = help(this)
+	print(details)
 
 #def atGroup(bot_id):
 
