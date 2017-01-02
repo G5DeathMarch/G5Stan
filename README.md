@@ -6,7 +6,7 @@ He is currently capable of the following commands:
 
 /gif {searchterm}
 	-This sends a search term to the giphy API and responds
-	to the specified chat with the first gif returned from the
+	to the specified chat with a random gif from the
 	API
 	
 /cheerup
