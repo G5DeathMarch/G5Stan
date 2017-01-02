@@ -5,6 +5,10 @@ from utility import botMessage, invalidSearch
 
 GIF_LIMIT = 20
 
+# ALL THE 'PYDOCS' (""") ARE USED FOR WHEN SOMEONE NEEDS HELP,
+# NOT ACTUAL PYDOCS
+
+# Searches the GIFY API for a gif that matches the search term.
 def getImage(searchTerm, bot_id):
 	"""
 	/gif [searchTerm]: I try to find a gif that is relevant to
@@ -43,7 +47,13 @@ def helpMeStan(bot_id, all_details):
 	"""
 	/helpmestan: I let you know what I can do.
 	"""
-	print(all_details)
+
+	# These all details come from the help function of this
+	# module, so we need to basically grab the function info
+
+	after_functions = all_details.split("FUNCTIONS", 1)[1]
+	function_info = after_functions.split("DATA",1)[0]
+	print(function_data)
 
 #def atGroup(bot_id):
 
