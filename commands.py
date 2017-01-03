@@ -15,7 +15,7 @@ def botMessage(message, bot_id):
 #retrieves gif from giphy API and sends it as a message
 def getImage(searchTerm, bot_id):
 	url = "http://api.giphy.com/v1/gifs/search"
-	key = "dc6zaTOxFJmzC"
+	key = os.environ.get('GIPHY_KEY')
 	id = bot_id
 	payload = {
 		'q':searchTerm,
