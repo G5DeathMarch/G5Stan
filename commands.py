@@ -2,7 +2,7 @@ import requests
 import sys
 import random
 
-GIF_LIMIT = 20
+GIF_LIMIT = 1
 
 #sends a standard message to the group
 def botMessage(message, bot_id):
