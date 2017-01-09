@@ -62,6 +62,12 @@ def helpMeStan(bot_id):
 		message = ''.join(function_lines)
 		botMessage(message, bot_id)
 
+def eyeBleach(bot_id):
+	"""
+	Will send 3 gifs that will be of adorable things that
+	should cover up the current conversation screen.
+	"""
+	pass
 
 #def atGroup(bot_id):
 
