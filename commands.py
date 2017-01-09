@@ -39,18 +39,12 @@ def cheerUp(bot_id):
 		id = bot_id
 		botMessage(message, bot_id)
 
-def helpMeStan(bot_id, detail):
+def helpMeStan(bot_id):
 	"""
-	Will take the detail what exactly Stan can do.
-	If the detail is empty it will just print out the command
-	names. If there is a detail it will try and print out the
-	specifics of that command, or send an error if it can't find
-	the command.
-
-	Will use the README for this information
+	Will detail what stan can do and will
+	use the README for this information
 	"""
 	pass
-
 
 #def atGroup(bot_id):
 
