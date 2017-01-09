@@ -3,7 +3,7 @@ import sys
 import random
 from utility import botMessage, invalidSearch
 
-GIF_LIMIT = 20
+GIF_LIMIT = 1
 
 def getImage(searchTerm, bot_id):
 	"""
@@ -11,7 +11,7 @@ def getImage(searchTerm, bot_id):
 	term.
 	"""
 	url = "http://api.giphy.com/v1/gifs/search"
-	key = "dc6zaTOxFJmzC"
+	key = os.environ.get('GIPHY_KEY')
 	id = bot_id
 	payload = {
 		'q':searchTerm,
