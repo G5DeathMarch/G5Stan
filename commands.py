@@ -36,7 +36,6 @@ def cheerUp(bot_id):
 	"""
 	with open('compliments.txt') as compliments:
 		message = random.choice(compliments.readlines())
-		id = bot_id
 		botMessage(message, bot_id)
 
 def helpMeStan(bot_id):
@@ -44,7 +43,13 @@ def helpMeStan(bot_id):
 	Will detail what stan can do and will
 	use the README for this information
 	"""
-	pass
+	with open('README.md') as readme:
+		readme_content = readme.readlines()
+		# We're grabbing everything about the different
+		# functions of Stan.
+		command_content = readme.split('commands:')[1]
+		botMessage(command_content, bot_id)
+
 
 #def atGroup(bot_id):
 
