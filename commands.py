@@ -42,15 +42,25 @@ def cheerUp(bot_id):
 
 def helpMeStan(bot_id):
 	"""
-	Will detail what stan can do and will
-	use the README for this information
+	Will detail what stan can do and will use the README
+	to grab all the information about the different functions
 	"""
+	function_lines = []
 	with open('README.md') as readme:
-		readme_content = readme.read()
-		# We're grabbing everything about the different
-		# functions of Stan.
-		command_content = readme_content.split('commands:')[1]
-		botMessage(command_content, bot_id)
+		for line in readme:
+			# We're checking to see if we hit the string that
+			# shows when we're talking about commands
+			if 'commands:' in line:
+				for line in readme:
+					"""
+					 if we ever get to the point where commands
+					 aren't last in the README, this is where
+					 we'd break.
+					"""
+					function_lines.add(line)
+		
+		message = ''.join(function_lines)
+		botMessage(message, bot_id)
 
 
 #def atGroup(bot_id):
