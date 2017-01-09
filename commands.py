@@ -57,7 +57,7 @@ def helpMeStan(bot_id):
 					 aren't last in the README, this is where
 					 we'd break.
 					"""
-					function_lines.add(line)
+					function_lines.append(line)
 		
 		message = ''.join(function_lines)
 		botMessage(message, bot_id)
