@@ -46,7 +46,7 @@ def helpMeStan(bot_id):
 	use the README for this information
 	"""
 	with open('README.md') as readme:
-		readme_content = readme.readlines()
+		readme_content = readme.read()
 		# We're grabbing everything about the different
 		# functions of Stan.
 		command_content = readme_content.split('commands:')[1]
