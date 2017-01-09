@@ -20,8 +20,7 @@ def result():
 		commands.cheerUp(bot_id)
 	# Help message
 	elif message['text'].startswith('/helpmestan'):
-		details = message['text'][5:]
-		commands.helpMeStan(bot_id, details)
+		commands.helpMeStan(bot_id)
 	return "Success"
 	
 if __name__ == '__main__':
