@@ -49,7 +49,7 @@ def helpMeStan(bot_id):
 		readme_content = readme.readlines()
 		# We're grabbing everything about the different
 		# functions of Stan.
-		command_content = readme.split('commands:')[1]
+		command_content = readme_content.split('commands:')[1]
 		botMessage(command_content, bot_id)
 
 
