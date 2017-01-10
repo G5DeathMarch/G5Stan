@@ -2,7 +2,7 @@ import requests
 import sys
 import random
 import os
-from utility import botMessage, invalidSearch
+from utility import botMessage, invalidSearch, obtainHotSubmissions
 
 GIF_LIMIT = 1
 
@@ -67,7 +67,10 @@ def eyeBleach(bot_id):
 	Will send 3 gifs that will be of adorable things that
 	should cover up the current conversation screen.
 	"""
-	pass
+	submissions = obtainHotSubmissions('eyebleach', num_of_sub=3)
+
+	for submission in submissions:
+		botMessage(submission.url, bot_id)
 
 #def atGroup(bot_id):
 
