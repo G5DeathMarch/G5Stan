@@ -21,6 +21,9 @@ def result():
 	# Help message
 	elif message['text'].startswith('/helpmestan'):
 		commands.helpMeStan(bot_id)
+	# Eyebleach
+	elif message['text'].startswith('/eyebleach'):
+		commandss.eyeBleach(bot_id)
 	return "Success"
 	
 if __name__ == '__main__':
