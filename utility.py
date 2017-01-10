@@ -33,6 +33,8 @@ def obtainHotSubmissions(subreddit_name, num_of_sub=1):
 						 username=os.environ.get('REDDIT_USERNAME'),
 						 password=os.environ.get('REDDIT_PASSWORD'))
 
+	print(reddit)
+	print(reddit.subreddits)
 	subreddit = reddit.subreddit(subreddit_name)
 
 	return subreddit.hot(num_of_sub)
