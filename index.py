@@ -23,7 +23,7 @@ def result():
 		commands.helpMeStan(bot_id)
 	# Eyebleach
 	elif message['text'].startswith('/eyebleach'):
-		commandss.eyeBleach(bot_id)
+		commands.eyeBleach(bot_id)
 	return "Success"
 	
 if __name__ == '__main__':
