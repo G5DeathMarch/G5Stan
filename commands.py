@@ -1,5 +1,6 @@
 import requests
 import sys
+import os
 import random
 
 GIF_LIMIT = 1
