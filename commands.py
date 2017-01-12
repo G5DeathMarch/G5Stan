@@ -64,13 +64,20 @@ def helpMeStan(bot_id):
 
 def eyeBleach(bot_id):
 	"""
-	Will send 3 gifs that will be of adorable things that
-	should cover up the current conversation screen.
+	Will send 3 gifs/images that will be of adorable things that
+	should cover up the current conversation screen. We'll just
+	scrape from r/eyebleach
 	"""
-	submissions = obtainHotSubmissions('eyebleach', num_of_sub=3)
+	# we're going to grab the top five incase one of the submissions
+	# is a reddit text post, then we can filter it out.
+	submissions = obtainHotSubmissions('eyebleach', num_of_sub=5)
+
+	sub_count = 0
 
 	for submission in submissions:
-		botMessage(submission.url, bot_id)
+		if 'reddit.com' not in submission.url and subcount < 3:
+			botMessage(submission.url, bot_id)
+			sub_count += 1
 
 #def atGroup(bot_id):
 
