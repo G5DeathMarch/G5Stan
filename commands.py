@@ -74,7 +74,7 @@ def eyeBleach():
 	sub_count = 0
 
 	for submission in submissions:
-		if 'reddit.com' not in submission.url and subcount < 3:
+		if 'reddit.com' not in submission.url and sub_count < 3:
 			botMessage(submission.url, bot_id)
 			sub_count += 1
 
