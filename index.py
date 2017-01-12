@@ -12,13 +12,16 @@ def result():
 	#send .gif message
 	if message['text'].startswith('/gif '):
 		searchTerm = message['text'][5:]
-		commands.getImage(searchTerm)
+		commands.getImage(searchTerm, bot_id)
 	#send cheerUp message
 	elif message['text'].startswith('/cheerup'):
-		commands.cheerUp()
+		commands.cheerUp(bot_id)
 	# Help message
 	elif message['text'].startswith('/helpmestan'):
-		commands.helpMeStan()
+		commands.helpMeStan(bot_id)
+	# Eyebleach
+	elif message['text'].startswith('/eyebleach'):
+		commandss.eyeBleach(bot_id)
 	return "Success"
 	
 if __name__ == '__main__':
