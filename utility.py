@@ -1,20 +1,19 @@
-import requests
-import sys
-import praw
-import os
+import requests, sys, os, praw
 
 #sends a standard message to the group
-def botMessage(message, bot_id):
+def botMessage(message):
+	#retrieve the appropriate bot_id from the JSON
+	bot_id = os.environ.get('BOT_ID')
 	values = {
 		'bot_id' : bot_id,
 		'text' : str(message),
 	}
 	r = requests.post('https://api.groupme.com/v3/bots/post', data = values)
 
-def invalidSearch(bot_id):
+def invalidSearch():
 	with open('failed_search.txt') as sayings:
 		message = random.choice(sayings.readlines())
-		botMessage(message, bot_id)
+		botMessage(message)
 
 def obtainHotSubmissions(subreddit_name, num_of_sub=1):
 	"""
