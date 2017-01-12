@@ -75,7 +75,7 @@ def eyeBleach():
 
 	for submission in submissions:
 		if 'reddit.com' not in submission.url and sub_count < 3:
-			botMessage(submission.url, bot_id)
+			botMessage(submission.url)
 			sub_count += 1
 
 #def atGroup():
