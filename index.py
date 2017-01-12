@@ -1,7 +1,7 @@
 import os
+import inspect
+import commands
 from flask import Flask, request
-from commands import getImage, cheerUp
-import os
 app = Flask(__name__)
 
 
@@ -14,10 +14,13 @@ def result():
 	#send .gif message
 	if message['text'].startswith('/gif '):
 		searchTerm = message['text'][5:]
-		getImage(searchTerm, bot_id)
+		commands.getImage(searchTerm, bot_id)
 	#send cheerUp message
 	elif message['text'].startswith('/cheerup'):
-		cheerUp(bot_id)
+		commands.cheerUp(bot_id)
+	# Help message
+	elif message['text'].startswith('/helpmestan'):
+		commands.helpMeStan(bot_id)
 	return "Success"
 	
 if __name__ == '__main__':

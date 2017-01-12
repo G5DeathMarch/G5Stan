@@ -2,22 +2,20 @@ import requests
 import sys
 import os
 import random
+import os
+from utility import botMessage, invalidSearch
 
 GIF_LIMIT = 1
 
-#sends a standard message to the group
-def botMessage(message, bot_id):
-	values = {
-		'bot_id' : bot_id,
-		'text' : str(message),
-	}
-	r = requests.post('https://api.groupme.com/v3/bots/post', data = values)
-
-#retrieves gif from giphy API and sends it as a message
 def getImage(searchTerm, bot_id):
+	"""
+	Stan searches the GIFY API for a gif that matches the search 
+	term.
+	"""
 	url = "http://api.giphy.com/v1/gifs/search"
-	key = os.environ.get('GIPHY_KEY')
+
 	id = bot_id
+	key = os.environ.get('GIPHY_KEY')
 	payload = {
 		'q':searchTerm,
 		'limit': GIF_LIMIT,
@@ -35,15 +33,36 @@ def getImage(searchTerm, bot_id):
 		invalidSearch(id)
 	
 def cheerUp(bot_id):
+	"""
+	Stan sends a message that will cheer up the members of the group
+	chat.
+	"""
 	with open('compliments.txt') as compliments:
 		message = random.choice(compliments.readlines())
-		id = bot_id
 		botMessage(message, bot_id)
 
-def invalidSearch(bot_id):
-	with open('failed_search.txt') as sayings:
-		message = random.choice(sayings.readlines())
+def helpMeStan(bot_id):
+	"""
+	Will detail what stan can do and will use the README
+	to grab all the information about the different functions
+	"""
+	function_lines = []
+	with open('README.md') as readme:
+		for line in readme:
+			# We're checking to see if we hit the string that
+			# shows when we're talking about commands
+			if 'commands:' in line:
+				for line in readme:
+					"""
+					 if we ever get to the point where commands
+					 aren't last in the README, this is where
+					 we'd break.
+					"""
+					function_lines.append(line)
+		
+		message = ''.join(function_lines)
 		botMessage(message, bot_id)
+
 
 #def atGroup(bot_id):
 
