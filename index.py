@@ -12,7 +12,7 @@ def result():
 	#send .gif message
 	message = r['text']
 	if message.startswith('/gif '):
-		searchTerm = message['text'][5:]
+		searchTerm = message[5:]
 		commands.getImage(searchTerm)
 	#send cheerUp message
 	elif message.startswith('/cheerup'):
