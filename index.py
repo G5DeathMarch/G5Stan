@@ -9,18 +9,16 @@ app = Flask(__name__)
 def result():
 	#receive JSON from groupme request containing message information		
  	message = request.get_json(force=True)
-	#retrieve the appropriate bot_id from the JSON
-	bot_id = os.environ.get('BOT_ID')
 	#send .gif message
 	if message['text'].startswith('/gif '):
 		searchTerm = message['text'][5:]
-		commands.getImage(searchTerm, bot_id)
+		commands.getImage(searchTerm)
 	#send cheerUp message
 	elif message['text'].startswith('/cheerup'):
-		commands.cheerUp(bot_id)
+		commands.cheerUp()
 	# Help message
 	elif message['text'].startswith('/helpmestan'):
-		commands.helpMeStan(bot_id)
+		commands.helpMeStan()
 	return "Success"
 	
 if __name__ == '__main__':

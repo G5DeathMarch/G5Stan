@@ -6,14 +6,12 @@ from utility import botMessage, invalidSearch
 
 GIF_LIMIT = 1
 
-def getImage(searchTerm, bot_id):
+def getImage(searchTerm):
 	"""
 	Stan searches the GIFY API for a gif that matches the search 
 	term.
 	"""
 	url = "http://api.giphy.com/v1/gifs/search"
-
-	id = bot_id
 	key = os.environ.get('GIPHY_KEY')
 	payload = {
 		'q':searchTerm,
@@ -25,22 +23,22 @@ def getImage(searchTerm, bot_id):
 		# lets grab a random gif from the returned images.
 		gif = random.choice(request.json()['data'])
 		message = gif['images']['downsized']['url']
-		botMessage(message, id)
+		botMessage(message)
 	except:
 		# If we failed to find something from our search,
 		# we send back an error message. Stan style.
-		invalidSearch(id)
+		invalidSearch()
 	
-def cheerUp(bot_id):
+def cheerUp():
 	"""
 	Stan sends a message that will cheer up the members of the group
 	chat.
 	"""
 	with open('compliments.txt') as compliments:
 		message = random.choice(compliments.readlines())
-		botMessage(message, bot_id)
+		botMessage(message)
 
-def helpMeStan(bot_id):
+def helpMeStan():
 	"""
 	Will detail what stan can do and will use the README
 	to grab all the information about the different functions
@@ -60,9 +58,9 @@ def helpMeStan(bot_id):
 					function_lines.append(line)
 		
 		message = ''.join(function_lines)
-		botMessage(message, bot_id)
+		botMessage(message)
 
 
-#def atGroup(bot_id):
+#def atGroup():
 
 	
