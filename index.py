@@ -8,19 +8,21 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def result():
 	#receive JSON from groupme request containing message information		
- 	message = request.get_json(force=True)
-	#retrieve the appropriate bot_id from the JSON
-	bot_id = os.environ.get('BOT_ID')
+ 	r = request.get_json(force=True)
 	#send .gif message
-	if message['text'].startswith('/gif '):
-		searchTerm = message['text'][5:]
-		commands.getImage(searchTerm, bot_id)
+	message = r['text']
+	if message.startswith('/gif '):
+		searchTerm = message[5:]
+		commands.getImage(searchTerm)
 	#send cheerUp message
-	elif message['text'].startswith('/cheerup'):
-		commands.cheerUp(bot_id)
+	elif message.startswith('/cheerup'):
+		commands.cheerUp()
 	# Help message
-	elif message['text'].startswith('/helpmestan'):
-		commands.helpMeStan(bot_id)
+	elif message.startswith('/helpmestan'):
+		commands.helpMeStan()
+	# Eyebleach
+	elif message.startswith('/eyebleach'):
+		commands.eyeBleach()
 	return "Success"
 	
 if __name__ == '__main__':

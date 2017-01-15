@@ -2,19 +2,16 @@ import requests
 import sys
 import os
 import random
-import os
-from utility import botMessage, invalidSearch
+from utility import botMessage, invalidSearch, obtainHotSubmissions
 
 GIF_LIMIT = 1
 
-def getImage(searchTerm, bot_id):
+def getImage(searchTerm):
 	"""
 	Stan searches the GIFY API for a gif that matches the search 
 	term.
 	"""
 	url = "http://api.giphy.com/v1/gifs/search"
-
-	id = bot_id
 	key = os.environ.get('GIPHY_KEY')
 	payload = {
 		'q':searchTerm,
@@ -26,22 +23,22 @@ def getImage(searchTerm, bot_id):
 		# lets grab a random gif from the returned images.
 		gif = random.choice(request.json()['data'])
 		message = gif['images']['downsized']['url']
-		botMessage(message, id)
+		botMessage(message)
 	except:
 		# If we failed to find something from our search,
 		# we send back an error message. Stan style.
-		invalidSearch(id)
+		invalidSearch()
 	
-def cheerUp(bot_id):
+def cheerUp():
 	"""
 	Stan sends a message that will cheer up the members of the group
 	chat.
 	"""
 	with open('compliments.txt') as compliments:
 		message = random.choice(compliments.readlines())
-		botMessage(message, bot_id)
+		botMessage(message)
 
-def helpMeStan(bot_id):
+def helpMeStan():
 	"""
 	Will detail what stan can do and will use the README
 	to grab all the information about the different functions
@@ -61,9 +58,25 @@ def helpMeStan(bot_id):
 					function_lines.append(line)
 		
 		message = ''.join(function_lines)
-		botMessage(message, bot_id)
+		botMessage(message)
 
+def eyeBleach():
+	"""
+	Will send 3 gifs/images that will be of adorable things that
+	should cover up the current conversation screen. We'll just
+	scrape from r/eyebleach
+	"""
+	# we're going to grab the top five incase one of the submissions
+	# is a reddit text post, then we can filter it out.
+	submissions = obtainHotSubmissions('eyebleach', num_of_sub=5)
 
-#def atGroup(bot_id):
+	sub_count = 0
+
+	for submission in submissions:
+		if 'reddit.com' not in submission.url and sub_count < 3:
+			botMessage(submission.url)
+			sub_count += 1
+
+#def atGroup():
 
 	
