@@ -1,5 +1,7 @@
 import requests, sys, os, praw, random
 
+BOT_PATH = 'https://api.groupme.com/v3/bots/
+
 #sends a standard message to the group
 BASE_URL = 'https://api.groupme.com/v3/bots/post'
 
@@ -23,6 +25,21 @@ def botImageMessage(image_url):
     }
     print("send image values: {}".format(values))
     r = requests.post(BASE_URL, json = values)
+
+def getMembers():
+	"""
+	Will grab all the current members in the group and return
+	them.
+	"""
+	bot_id = os.environ.get('BOT_ID')
+	# the group id is needed to grab the members in groupme
+	group_id = request.get_json(force=true)['group_id']
+	values = {
+		'id' : group_id
+	}
+
+	r = requests.get(BOT_PATH + '/get', data=values)
+	print(r.members)
 
 def invalidSearch():
     with open('failed_search.txt') as sayings:
