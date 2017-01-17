@@ -31,7 +31,7 @@ def result():
     elif message.startswith('@group'):
         pass
     return "Success"
-    
+
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
