@@ -83,9 +83,14 @@ def crellPic():
         image = random.choice(pics.readlines())
         botImageMessage(image) 
 
-def atGroup():
+def atGroup(group_message):
 	"""
 	Stan will first grab all the members in the group and then
 	send them a message that should give them a notification
 	"""
-	getMembers()
+	members = getMembers()
+	bot_message = 'Current Members:'
+	for member in members:
+		bot_message.append(member.nickname)
+	bot_message(bot_message)
+		
