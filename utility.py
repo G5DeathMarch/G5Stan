@@ -1,7 +1,7 @@
 from flask import request
 import requests, sys, os, praw
 
-BOT_PATH = 'https://api.groupme.com/v3/bots/'
+API_PATH = 'https://api.groupme.com/v3'
 
 #sends a standard message to the group
 BASE_URL = 'https://api.groupme.com/v3/bots/post'
@@ -39,7 +39,7 @@ def getMembers():
 		'id' : group_id
 	}
 
-	r = requests.get(BOT_PATH + '/get', data=values)
+	r = requests.get(API_PATH + 'groups/', data=values)
 	print(r)
 
 def invalidSearch():
