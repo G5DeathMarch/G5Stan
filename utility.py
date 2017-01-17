@@ -32,11 +32,18 @@ def getMembers():
 	Will grab all the current members in the group and return
 	them.
 	"""
-	bot_id = os.environ.get('BOT_ID')
+	token = os.environ.get('ACCESS_TOKEN')
 	# the group id is needed to grab the members in groupme
-	groupme_info = request.get_json(force=True)
+	group_id = request.get_json(force=True)['group_id']
 	
-	print(groupme_info)
+	values = {
+		'id' : group_id,
+		'token' : token		
+	}
+
+	r = requests.get(API_PATH + '/groups', data=values)
+
+	print(r.json())
 
 def invalidSearch():
     with open('failed_search.txt') as sayings:
