@@ -15,7 +15,7 @@ def result():
     if message.startswith('/gif '):
         searchTerm = message[5:]
         commands.getImage(searchTerm)
-    #send cheerUp message
+    # send cheerUp message
     elif message.startswith('/cheerup'):
         commands.cheerUp()
     # Help message
@@ -24,8 +24,12 @@ def result():
     # Eyebleach
     elif message.startswith('/eyebleach'):
         commands.eyeBleach()
+    # Crell meme
     elif message.startswith('/crell'):
         commands.crellPic()
+    # @group
+    elif message.startswith('@group'):
+        pass
     return "Success"
     
 if __name__ == '__main__':
