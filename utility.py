@@ -1,4 +1,4 @@
-import requests, sys, os, praw, random
+import requests, sys, os, praw, request
 
 BOT_PATH = 'https://api.groupme.com/v3/bots/
 
