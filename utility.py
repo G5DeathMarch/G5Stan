@@ -36,7 +36,9 @@ def getMembers():
 	# the group id is needed to grab the members in groupme
 	group_id = request.get_json(force=True)['group_id']
 	
-	r = requests.get(API_PATH + '/groups?token=' + token)
+	url_string = '{0}/groups/{1}?token={2}'.format(API_PATH, group_id, token)
+
+	r = requests.get(url_string)
 
 	print(r.json())
 
