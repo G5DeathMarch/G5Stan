@@ -40,7 +40,7 @@ def getMembers():
 	}
 
 	r = requests.get(API_PATH + '/groups', data=values)
-	print(r.json)
+	print(r.json())
 
 def invalidSearch():
     with open('failed_search.txt') as sayings:
