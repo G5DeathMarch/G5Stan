@@ -32,7 +32,7 @@ def getMembers():
 	Will grab all the current members in the group and return
 	them.
 	"""
-	token = os.environ.get('ACCESS_TOKEN')
+	token = os.environ.get('GROUPME_TOKEN')
 	# the group id is needed to grab the members in groupme
 	group_id = request.get_json(force=True)['group_id']
 	
