@@ -2,7 +2,8 @@ import requests
 import sys
 import os
 import random
-from utility import botMessage, botImageMessage, invalidSearch, obtainHotSubmissions
+from utility import botMessage, invalidSearch, obtainHotSubmissions,
+	getMembers
 
 GIF_LIMIT = 1
 
@@ -87,4 +88,4 @@ def atGroup():
 	Stan will first grab all the members in the group and then
 	send them a message that should give them a notification
 	"""
-	botMessage('MESSAGE GROUP!')
+	getMembers()
