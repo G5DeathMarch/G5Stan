@@ -34,13 +34,9 @@ def getMembers():
 	"""
 	bot_id = os.environ.get('BOT_ID')
 	# the group id is needed to grab the members in groupme
-	group_id = request.get_json(force=True)['group_id']
-	values = {
-		'id' : group_id
-	}
-
-	r = requests.get(API_PATH + '/groups', data=values)
-	print(r.json())
+	groupme_info = request.get_json(force=True)
+	
+	print(groupme_info)
 
 def invalidSearch():
     with open('failed_search.txt') as sayings:
