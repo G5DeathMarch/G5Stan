@@ -1,4 +1,5 @@
-import requests, sys, os, praw, request
+from flask import request
+import requests, sys, os, praw
 
 BOT_PATH = 'https://api.groupme.com/v3/bots/'
 
