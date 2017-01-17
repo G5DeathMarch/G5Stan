@@ -89,8 +89,8 @@ def atGroup(group_message):
 	send them a message that should give them a notification
 	"""
 	members = getMembers()
-	bot_message = 'Current Members:'
+	bot_message = ['Current Members:']
 	for member in members:
 		bot_message.append(member.nickname)
-	bot_message(bot_message)
+	bot_message(''.join(bot_message))
 		
