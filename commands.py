@@ -81,3 +81,10 @@ def crellPic():
     with open('image_links.txt') as pics:
         image = random.choice(pics.readlines())
         botImageMessage(image) 
+
+def atGroup():
+	"""
+	Stan will first grab all the members in the group and then
+	send them a message that should give them a notification
+	"""
+	botMessage('MESSAGE GROUP!')
