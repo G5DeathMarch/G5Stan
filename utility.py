@@ -40,7 +40,7 @@ def getMembers():
 
 	r = requests.get(url_string)
 
-	print(r.json())
+	return r['members']
 
 def invalidSearch():
     with open('failed_search.txt') as sayings:
