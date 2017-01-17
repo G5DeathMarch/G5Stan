@@ -34,7 +34,7 @@ def getMembers():
 	"""
 	bot_id = os.environ.get('BOT_ID')
 	# the group id is needed to grab the members in groupme
-	group_id = request.get_json(force=true)['group_id']
+	group_id = request.get_json(force=True)['group_id']
 	values = {
 		'id' : group_id
 	}
