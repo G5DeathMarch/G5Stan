@@ -40,7 +40,7 @@ def getMembers():
 	}
 
 	r = requests.get(BOT_PATH + '/get', data=values)
-	print(r.members)
+	print(r['members'])
 
 def invalidSearch():
     with open('failed_search.txt') as sayings:
