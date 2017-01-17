@@ -1,6 +1,6 @@
 import requests, sys, os, praw, request
 
-BOT_PATH = 'https://api.groupme.com/v3/bots/
+BOT_PATH = 'https://api.groupme.com/v3/bots/'
 
 #sends a standard message to the group
 BASE_URL = 'https://api.groupme.com/v3/bots/post'
