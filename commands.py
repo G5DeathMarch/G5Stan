@@ -92,5 +92,5 @@ def atGroup(group_message):
 	message = ['Current Members:']
 	for member in members:
 		message.append(member['nickname'])
-	bot_message(''.join(message))
+	botMessage(''.join(message))
 		
