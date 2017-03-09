@@ -27,6 +27,24 @@ def botImageMessage(image_url):
     print("send image values: {}".format(values))
     r = requests.post(BASE_URL, json = values)
 
+# Sends a message that has a mention in the text.
+# message should contain the @mentions 
+# mention_indices array of arrays that contain [index, length]
+# mention_uids: array of user ids, should match with the mention_indices
+def mention(message, mention_indices, mention_uids):
+	bot_id = os.environ.get('BOT_ID')
+	values = {
+		'bot_id' : bot_id,
+		'text' : str(message),
+		'attachments' : {
+			'type' : 'mentions',
+			'loci' : mention_indices,
+			'user_ids' : mention_uids
+		}
+	}
+	
+	r = requests.post(API_PATH + '/bots/post', data = values)
+
 def getMembers():
 	"""
 	Will grab all the current members in the group and return

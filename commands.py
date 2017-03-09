@@ -3,7 +3,7 @@ import sys
 import os
 import random
 from utility import (botMessage, invalidSearch, obtainHotSubmissions, 
-	getMembers)
+	getMembers, mention)
 
 GIF_LIMIT = 1
 
@@ -89,7 +89,16 @@ def atGroup(group_message):
 	send them a message that should give them a notification
 	"""
 	members = getMembers()
+	mention_text = ''
+	locations_length = []
+	uid = []
+	index = 0
 	for member in members:
-		botMessage('@' + member['nickname'] + ' ' + group_message)
-	
+		mention_text += '@' + member['nickname'] + ' '
+		uid.append[member['user_id']]
+		locations_length.append([index, len(member['nickname']))
+		index += len(member['nickname']) + 1
 		
+	mention_text += ' ' + group_message
+	mention(mention_text, locatons_length, uid)
+  
