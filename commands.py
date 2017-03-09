@@ -96,7 +96,7 @@ def atGroup(group_message):
 	for member in members:
 		mention_text += '@' + member['nickname'] + ' '
 		uid.append[member['user_id']]
-		locations_length.append([index, len(member['nickname']))
+		locations_length.append([index, len(member['nickname'])])
 		index += len(member['nickname']) + 1
 		
 	mention_text += ' ' + group_message
