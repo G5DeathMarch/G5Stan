@@ -2,6 +2,7 @@ import requests
 import sys
 import os
 import random
+import re
 from utility import botMessage, invalidSearch, obtainHotSubmissions
 
 GIF_LIMIT = 1
@@ -77,6 +78,17 @@ def eyeBleach():
 			botMessage(submission.url)
 			sub_count += 1
 
-#def atGroup():
+def remind(user_id, user_name, parse_message):
+	"""
+	Will create a reminder for the specified user that will fire after
+	the specified amount of time.
 
+	user_id: the groupme user id that matches the uid of the person who
+			 asked for the reminder.
+	user_name: The actual string name of the user who asked for the reminder
+	parse_message: This contains the actual message that the user typed in to
+				   the groupme chat. Contains the 'in [time] to [message]'
+	"""
+	
+	pass
 	
