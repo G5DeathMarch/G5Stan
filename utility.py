@@ -1,5 +1,7 @@
 import requests, sys, os, praw
 
+API_PATH = 'https://api.groupme.com/v3'
+
 #sends a standard message to the group
 def botMessage(message):
 	#retrieve the appropriate bot_id from the JSON
@@ -8,7 +10,34 @@ def botMessage(message):
 		'bot_id' : bot_id,
 		'text' : str(message),
 	}
-	r = requests.post('https://api.groupme.com/v3/bots/post', data = values)
+	r = requests.post(API_PATH + '/bots/post', data = values)
+
+def mention(message, mention_locations, mention_uids):
+	"""
+	Will send a message with a groupme mention within the text.
+	ex: '@person1 i'm mentioning you'
+
+	message: The string mention that contains both the '@username' mention
+			 as well as the rest of the message being sent.
+	mention_locations: a 2D array that stores the index in the message where the
+		     mention starts and how long the mention text is. For example, with
+		     the example message above you'll see [[0, 6]].
+	mention_uids: an array of user ids where the index of them matches the index
+		     of the locations.
+	"""
+	bot_id = os.environ.get('BOT_ID')
+	values = {
+		'bot_id' : bot_id,
+		'text' : str(message),
+		'attachments' : {
+			'type' : 'mentions',
+			'loci' : mention_locations,
+			'user_ids' : mention_uids
+		}
+	}
+
+	r = requests.post(API_PATH + '/bots/post', data = values)
+
 
 def invalidSearch():
 	with open('failed_search.txt') as sayings:
