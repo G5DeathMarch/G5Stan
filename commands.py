@@ -89,6 +89,11 @@ def remind(user_id, user_name, parse_message):
 	parse_message: This contains the actual message that the user typed in to
 				   the groupme chat. Contains the 'in [time] to [message]'
 	"""
-	
-	pass
-	
+	# The message needs to follow the format 'in [time] to [message]'
+	if ('in' in parse_message and 'to' in parse_message):
+		pass
+	else:
+		# Since we don't have the format we need, we gotta let the user know
+		# the format we need.
+		message = "I didn't quite catch that. Make sure you type it like this: '/remindme in [time] to [message]"	
+		botMessage(message)
