@@ -23,6 +23,15 @@ def result():
 	# Eyebleach
 	elif message.startswith('/eyebleach'):
 		commands.eyeBleach()
+	# Reminder
+	elif message.startswith('/remindme '):
+		# We expect the text to be in this format
+		# 'in [time] to [message]'
+		textContent = message[10:]
+		user_id = r['user_id']
+		username = r['name']
+		commands.remindme(user_id, username, textContent)		
+
 	return "Success"
 	
 if __name__ == '__main__':
