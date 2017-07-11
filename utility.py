@@ -1,4 +1,4 @@
-import requests, sys, os, praw
+import requests, sys, os, praw, re
 
 API_PATH = 'https://api.groupme.com/v3'
 
@@ -47,7 +47,7 @@ def invalidSearch():
 def obtainHotSubmissions(subreddit_name, num_of_sub=1):
 	"""
 	Will take a subreddit string, and will grab a 
-	number of urls and return them. The subreddit 
+	number of hot urls and return them. The subreddit 
 	string doesn't need the r/, but we'll make sure to 
 	get rid of it before hand.
 	"""
@@ -64,3 +64,33 @@ def obtainHotSubmissions(subreddit_name, num_of_sub=1):
 	subreddit = reddit.subreddit(subreddit_name)
 
 	return subreddit.hot(limit=num_of_sub)
+
+def stringToSeconds(time_string):
+	"""
+	Will take a string that determines time and will convert it
+	into the corresponding amound of seconds. 
+
+	Ex: '1 minute 30 seconds' or '1 minutes and 30 seconds' will both
+	output 90. 
+
+	time_string: The string that designates time. 
+	"""
+	# This is a python object that we're going to use to convert
+	# specific strings into seconds.
+	string_second_dict = { 
+		'second': 1,
+		'minute': 60,
+		'hour': 3600,
+		'day': (24 * 3600),
+		'week': (7 * 24 * 3600),
+		'month': (30.5 * 24 * 3600), # Approx 30 and a half days per month.
+		'year': (12 * 30.5 * 24 * 3600)
+	}
+
+	time_string = time_string.lower()
+
+	# First things first, we're going to remove the 'and' since it
+	# really doesn't mean anything.
+	time_string = re.sub(r"and?", "", time_string)
+
+
