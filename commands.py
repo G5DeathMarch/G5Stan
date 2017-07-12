@@ -3,7 +3,9 @@ import sys
 import os
 import random
 import re
-from utility import botMessage, invalidSearch, obtainHotSubmissions
+from reminder.py import Reminder
+from utility import botMessage, invalidSearch, obtainHotSubmissions, \
+					stringToSeconds
 
 GIF_LIMIT = 1
 
@@ -89,12 +91,15 @@ def remind(user_id, user_name, parse_message):
 	parse_message: This contains the actual message that the user typed in to
 				   the groupme chat. Is the 'in [time] to [message]', does
 				   not include the command used to get here.
-	"""
-	# The message needs to follow the format 'in [time] to [message]'
-	if (parse_message.find('in') < parse_message.find('to')):
-		time = re.search('in(.*)to', parse_message).group(1).strip()
-		message = re.search('to(.*)', parse_message).group(1).strip()
-		
+	"""	
+	time = re.search('in(.*)to', parse_message).group(1).strip()
+	message = re.search('to(.*)', parse_message).group(1).strip()
+	seconds = stringToSeconds(time)
+	if seconds > 0:
+		# we don't need to check if the message follows the desired format
+		# since it would fail in the stringToSeconds.
+		reminder = new Reminder(user_name, user_id, message, seconds)
+		reminder.start_reminder()
 	else:
 		# Since we don't have the format we need, we gotta let the user know
 		# the format we do need.
