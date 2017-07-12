@@ -87,10 +87,33 @@ def stringToSeconds(time_string):
 		'year': (12 * 30.5 * 24 * 3600)
 	}
 
+	# First things first clean up the string
 	time_string = time_string.lower()
+	time_string = re.sub(r" an?d? ", "", time_string) # clear out "and,"an", and "a" since they don't mean anything.
+	time_list = list(map(lambda word: word.rstrip('s'), time_string.split(' '))) # remove plurals.
 
-	# First things first, we're going to remove the 'and' since it
-	# really doesn't mean anything.
-	time_string = re.sub(r"and?", "", time_string)
+	# At this point the time_list should be pairs of values that should represent time
+	# and we can iterate through. The pair should be [number, time_unit] which we'll
+	# multiply together to get amount of seconds. Then we'll add them together.
+	try:
+		total_seconds = 0
+		for i in range(0, len(time_list), 2):		
 
+			amount = time_list[i]
+			unit = time_list[i+1]
+
+			if (amount is 'half'):
+				amount = 0.5
+			else:
+				amount = int(amount)
+
+			second_units = string_second_dict[unit]
+			total_seconds += amount * second_units
+	except:
+		# if we hit this point, then either the string given
+		# wasn't formed correctly or didn't have valid strings.
+		# Either way let's say it is wrong.
+		return -1
+
+	return total_seconds
 
