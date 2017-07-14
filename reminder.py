@@ -18,5 +18,14 @@ class Reminder(Observable):
 		mention(self.message, [0, len(user_name) + 1], [self.uid])
 		super().notify(self, message=self.message)
 
-	def start_reminder(self):
-		Timer(self.timeout, remind).start()
+	def startReminder(self):
+		self.timer = Timer(self.timeout, remind).start()
+
+	def cancelReminder(self):
+		try:
+			self.timer.cancel()
+		except:
+			# If we hit here then either we don't have
+			# a timer object/hasn't started, which we 
+			# don't need to cancel OR 
+			pass

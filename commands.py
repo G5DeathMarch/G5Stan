@@ -3,11 +3,12 @@ import sys
 import os
 import random
 import re
-from reminder.py import Reminder
+from ReminderCenter.py import ReminderCenter
 from utility import botMessage, invalidSearch, obtainHotSubmissions, \
 					stringToSeconds
 
 GIF_LIMIT = 1
+reminder_center = new ReminderCenter()
 
 def getImage(searchTerm):
 	"""
@@ -98,8 +99,7 @@ def remind(user_id, user_name, parse_message):
 	if seconds > 0:
 		# we don't need to check if the message follows the desired format
 		# since it would fail in the stringToSeconds.
-		reminder = new Reminder(user_name, user_id, message, seconds)
-		reminder.start_reminder()
+		reminder_center.addReminder(user_name, user_id, message, seconds)		
 	else:
 		# Since we don't have the format we need, we gotta let the user know
 		# the format we do need.
