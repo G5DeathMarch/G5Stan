@@ -16,7 +16,7 @@ class Reminder(Observable):
 		self.message = '@{0} {1}'.format(user_name, reminder)
 
 	def remind(self):
-		mention(self.message, [0, len(user_name) + 1], [self.uid])
+		mention(self.message, [0, len(self.user_name) + 1], [self.uid])
 		super(Observable, self).notify(self, message=self.message)
 
 	def startReminder(self):

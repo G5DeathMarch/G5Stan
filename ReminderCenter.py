@@ -14,7 +14,7 @@ class ReminderCenter(object):
 		reminder = Reminder(user_name, user_id, message, seconds)
 		reminder.subscribe(removeReminder)
 		self.reminders.append(reminder)
-		reminder.startReminder
+		reminder.startReminder()
 
 	def removeReminder(self, index):
 		try:
