@@ -4,7 +4,7 @@ so that we can easily, add, remove, and cancel the different
 Reminders.
 """
 
-from Reminder.py import Reminder
+from reminder import Reminder
 
 class ReminderCenter(object):
 	def __init__(self):

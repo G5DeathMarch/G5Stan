@@ -4,6 +4,7 @@ amount of time to give some specified message.
 """
 from utility import mention
 from threading import Timer
+from Observable import Observable
 
 class Reminder(Observable):
 	

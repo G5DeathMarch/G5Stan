@@ -3,7 +3,7 @@ import sys
 import os
 import random
 import re
-from ReminderCenter.py import ReminderCenter
+from ReminderCenter import ReminderCenter
 from utility import botMessage, invalidSearch, obtainHotSubmissions, \
 					stringToSeconds
 
