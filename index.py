@@ -30,7 +30,7 @@ def result():
 		textContent = message[10:]
 		user_id = r['user_id']
 		username = r['name']
-		commands.remindme(user_id, username, textContent)		
+		commands.remind(user_id, username, textContent)		
 
 	return "Success"
 	
