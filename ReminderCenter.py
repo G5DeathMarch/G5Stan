@@ -11,7 +11,7 @@ class ReminderCenter(object):
 		self.reminders = [];
 
 	def addReminder(self, user_name, user_id, message, seconds):
-		reminder = new Reminder(user_name, user_id, message, seconds)
+		reminder = Reminder(user_name, user_id, message, seconds)
 		reminder.subscribe(removeReminder)
 		self.reminders.append(reminder)
 		reminder.startReminder
