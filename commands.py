@@ -99,9 +99,11 @@ def remind(user_id, user_name, parse_message):
 	if seconds > 0:
 		# we don't need to check if the message follows the desired format
 		# since it would fail in the stringToSeconds.
-		reminder_center.addReminder(user_name, user_id, message, seconds)		
+		#reminder_center.addReminder(user_name, user_id, message, seconds)
+		message_str = "You got it! I'll remind you in {} to {}".format(time, message)
+		botMessage(message_str)
 	else:
 		# Since we don't have the format we need, we gotta let the user know
 		# the format we do need.
-		message = "I didn't quite catch that. Make sure you type it like this: '/remindme in [time] to [message]"	
-		botMessage(message)
+		message_str = "I didn't quite catch that. Make sure you type it like this: '/remindme in [time] to [message]"	
+		botMessage(message_str)
