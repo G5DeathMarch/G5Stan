@@ -4,8 +4,9 @@ import os
 import random
 import re
 from ReminderCenter import ReminderCenter
+from reminder import Reminder
 from utility import botMessage, invalidSearch, obtainHotSubmissions, \
-					stringToSeconds
+					stringToSeconds, mention
 
 GIF_LIMIT = 1
 reminder_center = ReminderCenter()
@@ -101,9 +102,11 @@ def remind(user_id, user_name, parse_message):
 		# since it would fail in the stringToSeconds.
 		#reminder_center.addReminder(user_name, user_id, message, seconds)
 		message_str = "You got it! I'll remind you in {} to {}".format(time, message)
+		reminder = Reminder(user_name, user_id, message, seconds)
+		reminder.remind()
 		botMessage(message_str)
 	else:
 		# Since we don't have the format we need, we gotta let the user know
 		# the format we do need.
-		message_str = "I didn't quite catch that. Make sure you type it like this: '/remindme in [time] to [message]"	
+		message_str = "I didn't quite catch that. Make sure you type it like this: '/remindme in [time] to [message]'"	
 		botMessage(message_str)
