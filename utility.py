@@ -35,7 +35,7 @@ def mention(message, mention_locations, mention_uids):
 			'user_ids' : mention_uids
 		}
 	}
-
+	print(values)
 	r = requests.post(API_PATH + '/bots/post', data = values)
 
 
