@@ -8,17 +8,17 @@ from Reminder.py import Reminder
 
 class ReminderCenter(object):
 	def __init__(self):
-		self.reminders = dict();
+		self.reminders = [];
 
 	def addReminder(self, user_name, user_id, message, seconds):
 		reminder = new Reminder(user_name, user_id, message, seconds)
 		reminder.subscribe(removeReminder)
-		self.reminders[custom_id] = reminder
+		self.reminders.append(reminder)
 		reminder.startReminder
 
-	def removeReminder(self, message):
+	def removeReminder(self, index):
 		try:
-			del self.reminders[message]
+			del self.reminders[index]
 		except:
 			# If we hit here, then the reminder doesn't
 			# exist here and we don't need to worry about

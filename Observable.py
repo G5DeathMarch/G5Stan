@@ -13,8 +13,10 @@ that we'll send our event with all of our attributes to
 class Observable(object):
 	def __init__(self):
 		self.callbacks = []
+
 	def subscribe(self, callback):
 		self.callbacks.append(callback)
+		
 	def notify(self, **attrs):
 		e = Event()
 		e.source = self
