@@ -102,9 +102,10 @@ def remind(user_id, user_name, parse_message):
 		# since it would fail in the stringToSeconds.
 		#reminder_center.addReminder(user_name, user_id, message, seconds)
 		message_str = "You got it! I'll remind you in {} to {}".format(time, message)
+		botMessage(message_str)
 		reminder = Reminder(user_name, user_id, message, seconds)
 		reminder.remind()
-		botMessage(message_str)
+		
 	else:
 		# Since we don't have the format we need, we gotta let the user know
 		# the format we do need.
