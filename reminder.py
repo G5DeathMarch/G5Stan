@@ -9,7 +9,7 @@ from Observable import Observable
 class Reminder(Observable):
 	
 	def __init__(self, user_name, uid, reminder, timeout):
-		super(Observable, self).__init__(self)
+		super(Observable, self).__init__()
 		self.timeout = timeout
 		self.uid = uid
 		self.user_name = user_name
