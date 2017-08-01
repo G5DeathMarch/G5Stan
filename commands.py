@@ -8,7 +8,7 @@ from utility import botMessage, invalidSearch, obtainHotSubmissions, \
 					stringToSeconds
 
 GIF_LIMIT = 1
-reminder_center = new ReminderCenter()
+reminder_center = ReminderCenter()
 
 def getImage(searchTerm):
 	"""
