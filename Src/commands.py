@@ -44,7 +44,9 @@ def helpMeStan():
 	to grab all the information about the different functions
 	"""
 	function_lines = []
-	with open('README.md') as readme:
+	parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+	readme_path = os.path.join(parent_dir, 'README.md')
+	with open(readme_path) as readme:
 		for line in readme:
 			# We're checking to see if we hit the string that
 			# shows when we're talking about commands
@@ -57,7 +59,7 @@ def helpMeStan():
 					"""
 					function_lines.append(line)
 		
-		message = ''.join(function_lines)
+		message = ''.join(function_lines)		
 		botMessage(message)
 
 def eyeBleach():

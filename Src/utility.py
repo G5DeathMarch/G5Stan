@@ -4,6 +4,10 @@ import requests, sys, os, praw
 def botMessage(message):
 	#retrieve the appropriate bot_id from the JSON
 	bot_id = os.environ.get('BOT_ID')
+	# delete
+	sys.stdout.write(bot_id + '\n')
+	sys.stdout.flush()
+	# delete
 	values = {
 		'bot_id' : bot_id,
 		'text' : str(message),
