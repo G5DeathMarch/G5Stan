@@ -1,4 +1,11 @@
+"""
+File that contains functions that provide us some common
+functionality for other classes / files
+"""
+
 import requests, sys, os, praw
+
+GROUPME_BOT_PATH = 'https://api.groupme.com/v3/bots/'
 
 #sends a standard message to the group
 def botMessage(message):
@@ -8,7 +15,7 @@ def botMessage(message):
 		'bot_id' : bot_id,
 		'text' : str(message),
 	}
-	r = requests.post('https://api.groupme.com/v3/bots/post', data = values)
+	r = requests.post(GROUPME_BOT_PATH + 'post', data=values)
 
 def invalidSearch():
 	with open('failed_search.txt') as sayings:
