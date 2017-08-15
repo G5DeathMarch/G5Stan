@@ -3,7 +3,7 @@ File that contains functions that provide us some common
 functionality for other classes / files
 """
 
-import requests, sys, os, praw
+import requests, sys, os, praw, random
 
 GROUPME_BOT_PATH = 'https://api.groupme.com/v3/bots/'
 
