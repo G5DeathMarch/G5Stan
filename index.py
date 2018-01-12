@@ -24,6 +24,8 @@ def result():
     # Eyebleach
     elif message.startswith('/eyebleach'):
         commands.eyeBleach()
+    elif message.startswith('/crell'):
+        commands.crellPic()
     return "Success"
     
 if __name__ == '__main__':

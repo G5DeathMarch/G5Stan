@@ -1,6 +1,8 @@
 import requests, sys, os, praw
 
 #sends a standard message to the group
+BASE_URL = 'https://api.groupme/v3/bots/post'
+
 def botMessage(message):
 	#retrieve the appropriate bot_id from the JSON
 	bot_id = os.environ.get('BOT_ID')
@@ -8,7 +10,18 @@ def botMessage(message):
 		'bot_id' : bot_id,
 		'text' : str(message),
 	}
-	r = requests.post('https://api.groupme.com/v3/bots/post', data = values)
+	r = requests.post(BASE_URL, data = values)
+
+def botImageMessage(image_url):    
+        bot_id = os.environ.get('BOT_ID')
+        values = {
+                'bot_id' : bot_id,
+                'attachments' : [{
+                    "type" : "image",
+                    "url" : image_url
+                }]
+        }
+        r = requests.post(BASE_URL, data = values)
 
 def invalidSearch():
 	with open('failed_search.txt') as sayings:

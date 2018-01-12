@@ -2,7 +2,7 @@ import requests
 import sys
 import os
 import random
-from utility import botMessage, invalidSearch, obtainHotSubmissions
+from utility import botMessage, botImageMessage, invalidSearch, obtainHotSubmissions
 
 GIF_LIMIT = 1
 
@@ -76,6 +76,14 @@ def eyeBleach():
 		if 'reddit.com' not in submission.url and sub_count < 3:
 			botMessage(submission.url)
 			sub_count += 1
+
+def crellPic():
+        with open('image_links.txt') as pics:
+                image = random.choice(pics.readlines())
+                botImageMessage(image)
+
+
+
 
 #def atGroup():
 
