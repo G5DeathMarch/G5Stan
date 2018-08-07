@@ -1,7 +1,7 @@
 import requests, sys, os, praw, random
 
 #sends a standard message to the group
-BASE_URL = 'https://api.groupme/v3/bots/post'
+BASE_URL = 'https://api.groupme.com/v3/bots/post'
 
 def botMessage(message):
     #retrieve the appropriate bot_id from the JSON
