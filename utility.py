@@ -27,7 +27,7 @@ def botImageMessage(image_url):
 def invalidSearch():
     print("invalidSearch()")
     with open('failed_search.txt') as sayings:
-        message = random.choice(sayings.readlines())
+        message = random.choice(sayings.readlines()).strip()
         botMessage(message)
 
 def obtainHotSubmissions(subreddit_name, num_of_sub=1):
