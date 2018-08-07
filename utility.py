@@ -16,6 +16,7 @@ def botImageMessage(image_url):
     print("Send image: {}".format(image_url))
     bot_id = os.environ.get('BOT_ID')
     values = {
+            'text': 'here you go!',
             'bot_id' : bot_id,
             'attachments' : [{
                 "type" : "image",
