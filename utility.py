@@ -16,13 +16,12 @@ def botImageMessage(image_url):
 
     bot_id = os.environ.get('BOT_ID')
     values = {
-            "bot_id" : bot_id,
-            "attachments" : [{
-                "type" : "image",
-                "url" : "{}".format(image_url)
+            'bot_id' : bot_id,
+            'attachments' : [{
+                'type' : 'image',
+                'url' : image_url.strip()
             }]
     }
-    print("Values to post: {}".format(values))
     r = requests.post(BASE_URL, data = values)
 
 def invalidSearch():
