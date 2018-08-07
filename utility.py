@@ -16,14 +16,14 @@ def botImageMessage(image_url):
 
     bot_id = os.environ.get('BOT_ID')
     values = {
-            "bot_id" : bot_id,
-            "attachments" : [{
-                "type" : "image",
-                "url" : "".join([image_url.strip()])
+            'bot_id' : bot_id,
+            'attachments' : [{
+                'type' : 'image',
+                'url' : image_url.strip()
             }]
     }
     print("values: {}".format(values))
-    r = requests.post(BASE_URL, data = values)
+    r = requests.post(BASE_URL, json = values)
 
 def invalidSearch():
     print("invalidSearch()")
