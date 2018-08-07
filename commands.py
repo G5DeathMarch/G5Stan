@@ -35,7 +35,7 @@ def cheerUp():
     chat.
     """
     with open('compliments.txt') as compliments:
-        message = random.choice(compliments.readlines())
+        message = random.choice(compliments.readlines()).strip()
         botMessage(message)
 
 def helpMeStan():
