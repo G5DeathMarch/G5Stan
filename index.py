@@ -7,11 +7,12 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def result():
+    print("request: {}".format(request))
     #receive JSON from groupme request containing message information       
     r = request.get_json(force=True)
     #send .gif message
     message = r['text']
-    print(r)
+    print("request json: {}".format(r))
     if message.startswith('/gif '):
         print("/gif called with: {}".format(message[5:]))
         searchTerm = message[5:]
