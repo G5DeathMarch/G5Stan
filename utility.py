@@ -12,7 +12,7 @@ def botMessage(message):
     r = requests.post(BASE_URL, data = values)
 
 def botImageMessage(image_url):
-    print("Send image: {} of type: {}".format(image_url, type(image_url)))
+    print("Send image: {}".format(image_url))
 
     bot_id = os.environ.get('BOT_ID')
     values = {
