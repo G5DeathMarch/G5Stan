@@ -9,11 +9,10 @@ def botMessage(message):
         'bot_id' : bot_id,
         'text' : str(message),
     }
+    print("send message values: {}".format(values))
     r = requests.post(BASE_URL, json = values)
 
 def botImageMessage(image_url):
-    print("Send image: {}".format(image_url))
-
     bot_id = os.environ.get('BOT_ID')
     values = {
             'bot_id' : bot_id,
@@ -22,11 +21,10 @@ def botImageMessage(image_url):
                 'url' : image_url.strip()
             }]
     }
-    print("values: {}".format(values))
+    print("send image values: {}".format(values))
     r = requests.post(BASE_URL, json = values)
 
 def invalidSearch():
-    print("invalidSearch()")
     with open('failed_search.txt') as sayings:
         message = random.choice(sayings.readlines()).strip()
         botMessage(message)
