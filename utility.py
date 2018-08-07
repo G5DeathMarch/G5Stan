@@ -25,6 +25,7 @@ def botImageMessage(image_url):
         r = requests.post(BASE_URL, data = values)
 
 def invalidSearch():
+    print("invalidSearch()")
     with open('failed_search.txt') as sayings:
         message = random.choice(sayings.readlines())
         botMessage(message)
@@ -37,6 +38,7 @@ def obtainHotSubmissions(subreddit_name, num_of_sub=1):
     get rid of it before hand.
     """
     # remove the r/ from the subreddit name
+    print("Get hot submissions from: {}".format(subreddit_name))
     if subreddit_name.startswith('r/'):
         subreddit_name = subreddit_name[2:]
 

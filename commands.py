@@ -80,15 +80,8 @@ def eyeBleach():
             botMessage(submission.url)
             sub_count += 1
 
-def crellPic():
-    print("crellPic()")
-    with open('image_links.txt') as pics:
-        image = random.choice(pics.readlines())
-        botImageMessage(image)
-
-
-
-
-#def atGroup():
-
-    
+# def crellPic():
+#     print("crellPic()")
+#     with open('image_links.txt') as pics:
+#         image = random.choice(pics.readlines())
+#         botImageMessage(image) 
