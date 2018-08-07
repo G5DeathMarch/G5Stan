@@ -13,18 +13,23 @@ def result():
     message = r['text']
     print(r)
     if message.startswith('/gif '):
+        print("/gif called with: {}".format(message[5:]))
         searchTerm = message[5:]
         commands.getImage(searchTerm)
     #send cheerUp message
     elif message.startswith('/cheerup'):
+        print("/cheerup called")
         commands.cheerUp()
     # Help message
     elif message.startswith('/helpmestan'):
+        print("/helpmestan called")
         commands.helpMeStan()
     # Eyebleach
     elif message.startswith('/eyebleach'):
+        print("/eyebleach called")
         commands.eyeBleach()
     elif message.startswith('/crell'):
+        print("/crell called")
         commands.crellPic()
     return "Success"
     
