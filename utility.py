@@ -22,6 +22,7 @@ def botImageMessage(image_url):
                 'url' : image_url.strip()
             }]
     }
+    print("values: {}".format(values))
     r = requests.post(BASE_URL, data = values)
 
 def invalidSearch():
