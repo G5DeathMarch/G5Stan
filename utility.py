@@ -5,7 +5,6 @@ BASE_URL = 'https://api.groupme.com/v3/bots/post'
 
 def botMessage(message):
     #retrieve the appropriate bot_id from the JSON
-    print("sending message: {}".format(message))
     bot_id = os.environ.get('BOT_ID')
     values = {
         'bot_id' : bot_id,
@@ -38,7 +37,6 @@ def obtainHotSubmissions(subreddit_name, num_of_sub=1):
     get rid of it before hand.
     """
     # remove the r/ from the subreddit name
-    print("Get hot submissions from: {}".format(subreddit_name))
     if subreddit_name.startswith('r/'):
         subreddit_name = subreddit_name[2:]
 

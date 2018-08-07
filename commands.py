@@ -34,7 +34,6 @@ def cheerUp():
     Stan sends a message that will cheer up the members of the group
     chat.
     """
-    print("cheerUp()")
     with open('compliments.txt') as compliments:
         message = random.choice(compliments.readlines())
         botMessage(message)
@@ -44,7 +43,6 @@ def helpMeStan():
     Will detail what stan can do and will use the README
     to grab all the information about the different functions
     """
-    print("helpMeStan()")
     function_lines = []
     with open('README.md') as readme:
         for line in readme:
@@ -68,7 +66,6 @@ def eyeBleach():
     should cover up the current conversation screen. We'll just
     scrape from r/eyebleach
     """
-    print("eyeBleach()")
     # we're going to grab the top five incase one of the submissions
     # is a reddit text post, then we can filter it out.
     submissions = obtainHotSubmissions('eyebleach', num_of_sub=5)
@@ -80,8 +77,8 @@ def eyeBleach():
             botMessage(submission.url)
             sub_count += 1
 
-# def crellPic():
-#     print("crellPic()")
-#     with open('image_links.txt') as pics:
-#         image = random.choice(pics.readlines())
-#         botImageMessage(image) 
+def crellPic():
+    print("crellPic()")
+    with open('image_links.txt') as pics:
+        image = random.choice(pics.readlines())
+        botImageMessage(image) 
