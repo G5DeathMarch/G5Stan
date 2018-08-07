@@ -1,4 +1,4 @@
-import requests, sys, os, praw
+import requests, sys, os, praw, random
 
 #sends a standard message to the group
 BASE_URL = 'https://api.groupme/v3/bots/post'
