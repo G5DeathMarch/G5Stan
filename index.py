@@ -11,7 +11,7 @@ def result():
     r = request.get_json(force=True)
     #send .gif message
     message = r['text']
-    print(r)
+    print("request: {}".format(r))
     if message.startswith('/gif '):
         searchTerm = message[5:]
         commands.getImage(searchTerm)
