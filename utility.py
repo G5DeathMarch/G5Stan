@@ -4,7 +4,6 @@ import requests, sys, os, praw, random
 BASE_URL = 'https://api.groupme.com/v3/bots/post'
 
 def botMessage(message):
-    #retrieve the appropriate bot_id from the JSON
     bot_id = os.environ.get('BOT_ID')
     values = {
         'bot_id' : bot_id,
@@ -13,14 +12,14 @@ def botMessage(message):
     r = requests.post(BASE_URL, data = values)
 
 def botImageMessage(image_url):
-    print("Send image: {}".format(image_url))
+    print("Send image: {} of type: {}".format(image_url, type(image_url)))
+
     bot_id = os.environ.get('BOT_ID')
     values = {
-            'text': 'here you go!',
             'bot_id' : bot_id,
             'attachments' : [{
-                "type" : "image",
-                "url" : image_url
+                'type' : 'image',
+                'url' : image_url
             }]
     }
     r = requests.post(BASE_URL, data = values)
