@@ -12,16 +12,17 @@ def botMessage(message):
     }
     r = requests.post(BASE_URL, data = values)
 
-def botImageMessage(image_url):    
-        bot_id = os.environ.get('BOT_ID')
-        values = {
-                'bot_id' : bot_id,
-                'attachments' : [{
-                    "type" : "image",
-                    "url" : image_url
-                }]
-        }
-        r = requests.post(BASE_URL, data = values)
+def botImageMessage(image_url):
+    print("Send image: {}".format(image_url))
+    bot_id = os.environ.get('BOT_ID')
+    values = {
+            'bot_id' : bot_id,
+            'attachments' : [{
+                "type" : "image",
+                "url" : image_url
+            }]
+    }
+    r = requests.post(BASE_URL, data = values)
 
 def invalidSearch():
     print("invalidSearch()")
