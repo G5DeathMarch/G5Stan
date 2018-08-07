@@ -102,4 +102,3 @@ def atGroup(group_message):
 	mention_text += ' ' + group_message
 	print('About to mention people!!')
 	mention(mention_text, locatons_length, uid)
-  

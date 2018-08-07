@@ -1,3 +1,6 @@
 __pycache__/*
 *.pyc
+<<<<<<< HEAD
 *.swp
+=======
+>>>>>>> Finished Crell implementation and Fixed up some Stan bugs (#6)
