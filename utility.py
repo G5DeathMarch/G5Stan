@@ -9,7 +9,7 @@ def botMessage(message):
         'bot_id' : bot_id,
         'text' : str(message),
     }
-    r = requests.post(BASE_URL, data = values)
+    r = requests.post(BASE_URL, json = values)
 
 def botImageMessage(image_url):
     print("Send image: {}".format(image_url))
