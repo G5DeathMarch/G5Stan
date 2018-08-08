@@ -4,5 +4,5 @@ import sys, os
 # we can import from src and actually do tests!
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-root = os.path.join(root, 'Src')
+root = os.path.join(root, 'src')
 sys.path.insert(0, root)

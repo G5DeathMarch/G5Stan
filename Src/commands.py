@@ -3,7 +3,8 @@ from utility import botMessage, botImageMessage, invalidSearch, obtainHotSubmiss
 
 GIF_LIMIT = 1
 
-def getImage(searchTerm):
+
+def get_image(searchTerm):
     """
     Stan searches the GIFY API for a gif that matches the search 
     term.
@@ -25,8 +26,9 @@ def getImage(searchTerm):
         # If we failed to find something from our search,
         # we send back an error message. Stan style.
         invalidSearch()
-    
-def cheerUp():
+
+
+def cheer_up():
     """
     Stan sends a message that will cheer up the members of the group
     chat.
@@ -35,7 +37,8 @@ def cheerUp():
         message = random.choice(compliments.readlines()).strip()
         botMessage(message)
 
-def helpMeStan():
+
+def help_me_stan():
     """
     Will detail what stan can do and will use the README
     to grab all the information about the different functions
@@ -57,7 +60,8 @@ def helpMeStan():
         message = ''.join(function_lines)
         botMessage(message)
 
-def eyeBleach():
+
+def eye_bleach():
     """
     Will send 3 gifs/images that will be of adorable things that
     should cover up the current conversation screen. We'll just
@@ -74,7 +78,8 @@ def eyeBleach():
             botMessage(submission.url)
             sub_count += 1
 
-def crellPic():
+
+def crell_pic():
     with open('image_links.txt') as pics:
         image = random.choice(pics.readlines())
         botImageMessage(image) 

@@ -14,7 +14,7 @@ __all__ = ['commonprefix', 'exists', 'getatime', 'getctime', 'getmtime',
 # Does a path exist?
 # This is false for dangling symbolic links on systems that support them.
 def exists(path):
-    """Test whether a path exists.  Returns False for broken symbolic links"""
+    """test whether a path exists.  Returns False for broken symbolic links"""
     try:
         os.stat(path)
     except OSError:
@@ -25,7 +25,7 @@ def exists(path):
 # This follows symbolic links, so both islink() and isdir() can be true
 # for the same path on systems that support symlinks
 def isfile(path):
-    """Test whether a path is a regular file"""
+    """test whether a path is a regular file"""
     try:
         st = os.stat(path)
     except OSError:
@@ -79,14 +79,14 @@ def commonprefix(m):
 # Are two stat buffers (obtained from stat, fstat or lstat)
 # describing the same file?
 def samestat(s1, s2):
-    """Test whether two stat buffers reference the same file"""
+    """test whether two stat buffers reference the same file"""
     return (s1.st_ino == s2.st_ino and
             s1.st_dev == s2.st_dev)
 
 
 # Are two filenames really pointing to the same file?
 def samefile(f1, f2):
-    """Test whether two pathnames reference the same actual file"""
+    """test whether two pathnames reference the same actual file"""
     s1 = os.stat(f1)
     s2 = os.stat(f2)
     return samestat(s1, s2)
@@ -95,7 +95,7 @@ def samefile(f1, f2):
 # Are two open files really referencing the same file?
 # (Not necessarily the same file descriptor!)
 def sameopenfile(fp1, fp2):
-    """Test whether two open file objects reference the same file"""
+    """test whether two open file objects reference the same file"""
     s1 = os.fstat(fp1)
     s2 = os.fstat(fp2)
     return samestat(s1, s2)

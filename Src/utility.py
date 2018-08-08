@@ -5,38 +5,41 @@ functionality for other classes / files
 
 import requests, sys, os, praw, random
 
-GROUPME_BOT_PATH = 'https://api.groupme.com/v3/bots/'
 
-#sends a standard message to the group
+# sends a standard message to the group
 BASE_URL = 'https://api.groupme.com/v3/bots/post'
 
-def botMessage(message):
+
+def bot_message(message):
     bot_id = os.environ.get('BOT_ID')
     values = {
-        'bot_id' : bot_id,
-        'text' : str(message),
+        'bot_id': bot_id,
+        'text': str(message),
     }
     print("send message values: {}".format(values))
     r = requests.post(BASE_URL, json = values)
 
-def botImageMessage(image_url):
+
+def bot_image_message(image_url):
     bot_id = os.environ.get('BOT_ID')
     values = {
-            'bot_id' : bot_id,
+            'bot_id': bot_id,
             'attachments' : [{
-                'type' : 'image',
-                'url' : image_url.strip()
+                'type': 'image',
+                'url': image_url.strip()
             }]
     }
     print("send image values: {}".format(values))
     r = requests.post(BASE_URL, json = values)
 
-def invalidSearch():
+
+def invalid_search():
     with open('failed_search.txt') as sayings:
         message = random.choice(sayings.readlines()).strip()
-        botMessage(message)
+        bot_message(message)
 
-def obtainHotSubmissions(subreddit_name, num_of_sub=1):
+
+def obtain_hot_submissions(subreddit_name, num_of_sub=1):
     """
     Will take a subreddit string, and will grab a 
     number of urls and return them. The subreddit 
