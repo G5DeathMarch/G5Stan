@@ -11,6 +11,7 @@ def result():
     r = request.get_json(force=True)
     #send .gif message
     message = r['text']
+    print("request: {}".format(r))
     if message.startswith('/gif '):
         searchTerm = message[5:]
         commands.getImage(searchTerm)
@@ -23,6 +24,8 @@ def result():
     # Eyebleach
     elif message.startswith('/eyebleach'):
         commands.eyeBleach()
+    elif message.startswith('/crell'):
+        commands.crellPic()
     return "Success"
     
 if __name__ == '__main__':
