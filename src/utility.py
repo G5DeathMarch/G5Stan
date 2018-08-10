@@ -3,7 +3,10 @@ File that contains functions that provide us some common
 functionality for other classes / files
 """
 
-import requests, sys, os, praw, random
+import requests
+import os
+import praw
+import random
 
 
 # sends a standard message to the group
@@ -24,13 +27,13 @@ def bot_image_message(image_url):
     bot_id = os.environ.get('BOT_ID')
     values = {
             'bot_id': bot_id,
-            'attachments' : [{
+            'attachments': [{
                 'type': 'image',
                 'url': image_url.strip()
             }]
     }
     print("send image values: {}".format(values))
-    r = requests.post(BASE_URL, json = values)
+    r = requests.post(BASE_URL, json=values)
 
 
 def invalid_search():
