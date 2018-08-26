@@ -5,30 +5,13 @@ file.
 
 import pytest  # test library
 import mock  # mocking library
+from test.helpers import *
 import utility  # What we're testing
 # libraries used, that we need to mock.
 import requests
 import praw
 import os
 import random
-
-
-def os_get_side_effect(arg):
-    values = {
-        'BOT_ID': 'bot_id',
-        'GIPHY_KEY': 'giphy_key',
-        'GROUPME_TOKEN': 'groupme_token',
-        'REDDIT_CLIENT_ID': 'reddit_client_id',
-        'REDDIT_CLIENT_SECRET': 'reddit_client_secret',
-        'REDDIT_PASSWORD': 'reddit_password',
-        'REDDIT_USERNAME': 'reddit_username',
-        'USER_AGENT': 'user_agent'
-    }
-
-    try:
-        return values[arg]
-    except Exception:
-        return ''
 
 
 class TestBotMessage(object):
