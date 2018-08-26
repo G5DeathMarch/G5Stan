@@ -12,7 +12,4 @@ def os_get_side_effect(arg):
         'USER_AGENT': 'user_agent'
     }
 
-    try:
-        return values[arg]
-    except Exception:
-        return ''
+    return values[arg]
