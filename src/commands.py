@@ -1,10 +1,8 @@
 import requests, sys, os, random
-from utility import botMessage, botImageMessage, invalidSearch, obtainHotSubmissions
-
-GIF_LIMIT = 1
+from utility import bot_message, bot_image_message, invalid_search, obtain_hot_submissions
 
 
-def get_image(searchTerm):
+def get_image(search_term, gif_limit=1):
     """
     Stan searches the GIFY API for a gif that matches the search 
     term.
@@ -12,20 +10,20 @@ def get_image(searchTerm):
     url = "http://api.giphy.com/v1/gifs/search"
     key = os.environ.get('GIPHY_KEY')
     payload = {
-        'q':searchTerm,
-        'limit': GIF_LIMIT,
-        'api_key':key
+        'q': search_term,
+        'limit': gif_limit,
+        'api_key': key
     }
     try:
         request = requests.get(url, params=payload)
         # lets grab a random gif from the returned images.
         gif = random.choice(request.json()['data'])
         message = gif['images']['downsized']['url']
-        botMessage(message)
-    except:
+        bot_message(message)
+    except requests.RequestException:
         # If we failed to find something from our search,
         # we send back an error message. Stan style.
-        invalidSearch()
+        invalid_search()
 
 
 def cheer_up():
@@ -35,7 +33,7 @@ def cheer_up():
     """
     with open('compliments.txt') as compliments:
         message = random.choice(compliments.readlines()).strip()
-        botMessage(message)
+        bot_message(message)
 
 
 def help_me_stan():
@@ -58,7 +56,7 @@ def help_me_stan():
                     function_lines.append(line)
         
         message = ''.join(function_lines)
-        botMessage(message)
+        bot_message(message)
 
 
 def eye_bleach():
@@ -69,17 +67,17 @@ def eye_bleach():
     """
     # we're going to grab the top five incase one of the submissions
     # is a reddit text post, then we can filter it out.
-    submissions = obtainHotSubmissions('eyebleach', num_of_sub=5)
+    submissions = obtain_hot_submissions('eyebleach', num_of_sub=5)
 
     sub_count = 0
 
     for submission in submissions:
         if 'reddit.com' not in submission.url and sub_count < 3:
-            botMessage(submission.url)
+            bot_message(submission.url)
             sub_count += 1
 
 
 def crell_pic():
     with open('image_links.txt') as pics:
         image = random.choice(pics.readlines())
-        botImageMessage(image) 
+        bot_image_message(image)
