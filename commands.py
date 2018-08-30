@@ -92,8 +92,11 @@ def atGroup(group_message, group_id):
     for member in members:
         mention_text += '@' + member['nickname'] + ' '
         uid.append(member['user_id'])
-        locations_length.append([index, len(member['nickname'])])
-        index += len(member['nickname']) + 1
+        # The length needs to be @ + nickname
+        locations_length.append([index, len(member['nickname']) + 1])
+        # we need to have the index increase by the @(1) + length of nickname + space(1)
+        # or just the mention text length
+        index += len(mention_text)
         
     mention_text += ' ' + group_message
     print("mention text: {}".format(mention_text))
