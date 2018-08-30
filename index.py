@@ -24,7 +24,7 @@ def result():
     # Eyebleach
     elif message.startswith('/eyebleach'):
         commands.eyeBleach()
-    # Crell meme
+    # Crell memes
     elif message.startswith('/crell'):
         commands.crellPic()
     # @group

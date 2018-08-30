@@ -27,42 +27,47 @@ def botImageMessage(image_url):
     print("send image values: {}".format(values))
     r = requests.post(BASE_URL, json = values)
 
-# Sends a message that has a mention in the text.
-# message should contain the @mentions 
-# mention_indices array of arrays that contain [index, length]
-# mention_uids: array of user ids, should match with the mention_indices
 def mention(message, mention_indices, mention_uids):
-	bot_id = os.environ.get('BOT_ID')
-	values = {
-		'bot_id' : bot_id,
-		'text' : str(message),
-		'attachments' : {
-			'type' : 'mentions',
-			'loci' : mention_indices,
-			'user_ids' : mention_uids
-		}
-	}
+    """
+    Sends a message that has a mention in the text.
+    message should contain the @mentions 
+    mention_indices array of arrays that contain [index, length]
+    mention_uids: array of user ids, should match with the mention_indices
+    """
+    bot_id = os.environ.get('BOT_ID')
+    values = {
+        'bot_id' : bot_id,
+        'text' : str(message),
+        'attachments' : {
+            'type' : 'mentions',
+            'loci' : mention_indices,
+            'user_ids' : mention_uids
+        }
+    }
 
-	print(values)
+    sys.stdout.write(values)
 
-	r = requests.post(API_PATH + '/bots/post', data = values)
+    r = requests.post(POST_URL, json = values)
 
-def getMembers():
-	"""
-	Will grab all the current members in the group and return
-	them.
-	"""
-	token = os.environ.get('GROUPME_TOKEN')
-	# the group id is needed to grab the members in groupme
-	group_id = request.get_json(force=True)['group_id']
-	
-	url_string = '{0}/groups/{1}?token={2}'.format(API_PATH, group_id, token)
+def getMembers(group_id):
+    """
+    Will grab all the current members in the group and return
+    them.
+    """
+    print("environ: {}".format(os.environ))
+    token = os.environ.get('GROUPME_TOKEN')
+    
+    url_string = '{0}/groups/{1}?token={2}'.format(API_PATH, group_id, token)
 
-	r = requests.get(url_string)
+    print("Url: {}".format(url_string))
 
-	json = r.json()
+    r = requests.get(url_string)
 
-	return json['response']['members']
+    print("Request Object: {}".format(r))
+
+    json = r.json()
+
+    return json['response']['members']
 
 def invalidSearch():
     with open('failed_search.txt') as sayings:
