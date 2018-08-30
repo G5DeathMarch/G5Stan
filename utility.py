@@ -46,7 +46,7 @@ def mention(message, mention_indices, mention_uids):
 
     print("mention values: {}".format(values))
 
-    r = requests.post(POST_URL, json = values)
+    r = requests.post(BASE_URL, json = values)
 
 def getMembers(group_id):
     """
