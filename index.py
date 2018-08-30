@@ -29,7 +29,7 @@ def result():
         commands.crellPic()
     # @group
     elif message.startswith('@group '):
-        group_message = message[6:]
+        group_message = message[7:]
         group_id = r['group_id']
         commands.atGroup(group_message, group_id)
 

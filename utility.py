@@ -53,17 +53,9 @@ def getMembers(group_id):
     Will grab all the current members in the group and return
     them.
     """
-    print("environ: {}".format(os.environ))
-    token = os.environ.get('GROUPME_TOKEN')
-    
+    token = os.environ.get('GROUPME_TOKEN')    
     url_string = '{0}/groups/{1}?token={2}'.format(API_PATH, group_id, token)
-
-    print("Url: {}".format(url_string))
-
     r = requests.get(url_string)
-
-    print("Request Object: {}".format(r))
-
     json = r.json()
 
     print("Members: {}".format(json['response']['members']))
