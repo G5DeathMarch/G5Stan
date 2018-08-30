@@ -44,7 +44,7 @@ def mention(message, mention_indices, mention_uids):
         }
     }
 
-    sys.stdout.write(values)
+    print("mention values: {}".format(values))
 
     r = requests.post(POST_URL, json = values)
 
