@@ -2,8 +2,8 @@ import requests
 import sys
 import os
 import random
-from utility import (botMessage, invalidSearch, obtainHotSubmissions, 
-    getMembers, mention)
+from utility import (botMessage, invalidSearch,
+ obtainHotSubmissions, getMembers, mention)
 
 GIF_LIMIT = 1
 
