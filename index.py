@@ -28,8 +28,11 @@ def result():
     elif message.startswith('/crell'):
         commands.crellPic()
     # @group
-    elif message.startswith('@group'):
-        pass
+    elif message.startswith('@group '):
+        group_message = message[6:]
+        group_id = r['group_id']
+        commands.atGroup(group_message, group_id)
+
     return "Success"
 
 if __name__ == '__main__':

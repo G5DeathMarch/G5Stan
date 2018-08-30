@@ -83,7 +83,7 @@ def atGroup(group_message, group_id):
     Stan will first grab all the members in the group and then
     send them a message that should give them a notification
     """
-    sys.stdout.write('commands.py: atGroup()')
+    print("Send message: {0}\nTo Group: {1}".format(group_message, group_id))
     members = getMembers(group_id)
     mention_text = ''
     locations_length = []
@@ -96,6 +96,7 @@ def atGroup(group_message, group_id):
         index += len(member['nickname']) + 1
         
     mention_text += ' ' + group_message
+    print("mention text: {}".format(mention_text))
     mention(mention_text, locatons_length, uid)
   
 def crellPic():
