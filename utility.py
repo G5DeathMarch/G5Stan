@@ -1,4 +1,3 @@
-from flask import request
 import requests, sys, os, praw, random
 
 API_PATH = 'https://api.groupme.com/v3'
@@ -66,6 +65,8 @@ def getMembers(group_id):
     print("Request Object: {}".format(r))
 
     json = r.json()
+
+    print("Members: {}".format(json['response']['members']))
 
     return json['response']['members']
 
