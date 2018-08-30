@@ -97,7 +97,7 @@ def atGroup(group_message, group_id):
         
     mention_text += ' ' + group_message
     print("mention text: {}".format(mention_text))
-    mention(mention_text, locatons_length, uid)
+    mention(mention_text, locations_length, uid)
   
 def crellPic():
     with open('image_links.txt') as pics:
