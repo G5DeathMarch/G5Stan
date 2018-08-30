@@ -2,7 +2,8 @@ import requests
 import sys
 import os
 import random
-from utility import botMessage, botImageMessage, invalidSearch, obtainHotSubmissions
+from utility import (botMessage, invalidSearch,
+ obtainHotSubmissions, getMembers, mention)
 
 GIF_LIMIT = 1
 
@@ -77,6 +78,26 @@ def eyeBleach():
             botMessage(submission.url)
             sub_count += 1
 
+def atGroup(group_message, group_id):
+    """
+    Stan will first grab all the members in the group and then
+    send them a message that should give them a notification
+    """
+    sys.stdout.write('commands.py: atGroup()')
+    members = getMembers(group_id)
+    mention_text = ''
+    locations_length = []
+    uid = []
+    index = 0
+    for member in members:
+        mention_text += '@' + member['nickname'] + ' '
+        uid.append[member['user_id']]
+        locations_length.append([index, len(member['nickname'])])
+        index += len(member['nickname']) + 1
+        
+    mention_text += ' ' + group_message
+    mention(mention_text, locatons_length, uid)
+  
 def crellPic():
     with open('image_links.txt') as pics:
         image = random.choice(pics.readlines())
