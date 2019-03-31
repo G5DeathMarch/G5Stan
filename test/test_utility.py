@@ -168,7 +168,7 @@ class TestInvalidSearch(object):
 
             # Ensure that the mocked functions were called and with
             # the correct arguments
-            mock_open.assert_called_once_with('failed_search.txt')
+            mock_open.assert_called_once_with('resources/failed_search.txt')
             random_choice.assert_called_once()
             utility_bot_message.assert_called_once_with(message)
 
