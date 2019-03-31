@@ -1,4 +1,7 @@
-import requests, sys, os, random
+import requests
+import sys
+import os
+import random
 from utility import bot_message, bot_image_message, invalid_search, obtain_hot_submissions
 
 
@@ -26,23 +29,23 @@ def get_image(search_term, gif_limit=1):
         invalid_search()
 
 
-def cheer_up():
+def cheer_up(cheerup_file):
     """
     Stan sends a message that will cheer up the members of the group
     chat.
     """
-    with open('compliments.txt') as compliments:
+    with open(cheerup_file) as compliments:
         message = random.choice(compliments.readlines()).strip()
         bot_message(message)
 
 
-def help_me_stan():
+def help_me_stan(readme_file):
     """
     Will detail what stan can do and will use the README
     to grab all the information about the different functions
     """
     function_lines = []
-    with open('README.md') as readme:
+    with open(readme_file) as readme:
         for line in readme:
             # We're checking to see if we hit the string that
             # shows when we're talking about commands
@@ -77,7 +80,7 @@ def eye_bleach():
             sub_count += 1
 
 
-def crell_pic():
-    with open('image_links.txt') as pics:
+def crell_pic(image_file):
+    with open(image_file) as pics:
         image = random.choice(pics.readlines())
         bot_image_message(image)

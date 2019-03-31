@@ -20,7 +20,7 @@ def bot_message(message):
         'text': str(message),
     }
     print("send message values: {}".format(values))
-    r = requests.post(BASE_URL, json = values)
+    r = requests.post(BASE_URL, json=values)
 
 
 def bot_image_message(image_url):
@@ -37,7 +37,7 @@ def bot_image_message(image_url):
 
 
 def invalid_search():
-    with open('failed_search.txt') as sayings:
+    with open('resources/failed_search.txt') as sayings:
         message = random.choice(sayings.readlines()).strip()
         bot_message(message)
 
