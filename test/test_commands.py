@@ -4,14 +4,15 @@ commands.py file
 """
 
 import pytest  # test library
-from test.helpers import *
+from .helpers import *
 from mock import Mock, mock, call  # mocking library
 import commands  # What we're testing
 # Libraries / code we're going to be mocking
 import os
 import requests
 import random
-import utility
+
+test_resources_root = os.path.join(os.path.dirname(__file__), 'resources')
 
 
 class TestGetImage(object):
@@ -96,16 +97,160 @@ class TestGetImage(object):
 
 
 class TestCheerUp(object):
-    pass
+    def setup(self):
+        self.compliments_file = os.path.join(test_resources_root, 'test_compliments.txt')
+
+    @mock.patch('commands.bot_message')
+    def test_cheer_up_get_compliments_from_file(self, bot_message_mock):
+        expected_cheer_up = "test"
+
+        # Call test function
+        commands.cheer_up(self.compliments_file)
+
+        # Verify Mocks
+        bot_message_mock.assert_called_once_with(expected_cheer_up)
+
+    @mock.patch('commands.bot_message')
+    def test_cheer_up_should_error_on_file_that_doesnt_exist(self, bot_message_mock):
+        filename = 'totally_not_a_file'
+
+        # Call test function
+        with pytest.raises(FileNotFoundError):
+            commands.cheer_up(filename)
+
+        # Verify Mocks
+        bot_message_mock.assert_not_called()
 
 
-class TestHelpMeStand(object):
-    pass
+class TestHelpMeStan(object):
+    def setup(self):
+        self.readme = os.path.join(test_resources_root, 'test_readme.txt')
+
+    @mock.patch('commands.bot_message')
+    def test_help_me_stan_reads_commands(self, mock_bot_message):
+        expected_return = '\n'.join(['test1', 'test2', 'test3'])
+
+        # Call Test Function
+        commands.help_me_stan(self.readme)
+
+        # Verify Mocks
+        mock_bot_message.assert_called_once_with(expected_return.strip())
+
+    @mock.patch('commands.bot_message')
+    def test_help_me_stan_throws_error_when_file_doesnt_exist(self, mock_bot_message):
+        file = 'totally_not_a_file'
+
+        # Call Test Function
+        with pytest.raises(FileNotFoundError):
+            commands.help_me_stan(file)
+
+        # Verify Mocks
+        mock_bot_message.assert_not_called()
+
+    @mock.patch('commands.bot_message')
+    def test_help_me_stan_no_commands_in_file(self, mock_bot_message):
+        empty_file = os.path.join(test_resources_root, 'empty_file.txt')
+
+        # Call Test Function
+        commands.help_me_stan(empty_file)
+
+        # Verify Mocks
+        mock_bot_message.assert_called_once_with('')
 
 
 class TestEyeBleach(object):
-    pass
+
+    class fake_reddit_post(object):
+        def __init__(self, url):
+            self.url = url
+
+    @mock.patch('commands.bot_message')
+    @mock.patch('commands.obtain_hot_submissions')
+    def test_eye_bleach_only_gets_non_reddit_com_urls(self, mock_hot_submissions, mock_bot_message):
+        returned = [
+            self.fake_reddit_post('something.reddit.com'),
+            self.fake_reddit_post('valid.com'),
+            self.fake_reddit_post('another.reddit.com'),
+            self.fake_reddit_post('another.reddit.com'),
+            self.fake_reddit_post('valid.com')
+        ]
+
+        expected_calls = [
+            call('valid.com'),
+            call('valid.com')
+        ]
+
+        # Setup Mocks
+        mock_hot_submissions.return_value = returned
+
+        # Call Test function
+        commands.eye_bleach()
+
+        # Verify Mocks
+        assert(mock_bot_message.call_args_list == expected_calls)
+
+    @mock.patch('commands.bot_message')
+    @mock.patch('commands.obtain_hot_submissions')
+    def test_eye_bleach_only_gets_a_max_of_3_urls(self, mock_hot_submissions, mock_bot_message):
+        returned = [
+            self.fake_reddit_post('valid.com'),
+            self.fake_reddit_post('valid.com'),
+            self.fake_reddit_post('valid.com'),
+            self.fake_reddit_post('valid.com'),
+            self.fake_reddit_post('valid.com')
+        ]
+
+        expected_calls = [
+            call('valid.com'),
+            call('valid.com'),
+            call('valid.com')
+        ]
+
+        # Setup Mock
+        mock_hot_submissions.return_value = returned
+
+        # Call Test Method
+        commands.eye_bleach()
+
+        # Verify Mock
+        assert(mock_bot_message.call_args_list == expected_calls)
+
+    @mock.patch('commands.bot_message')
+    @mock.patch('commands.obtain_hot_submissions')
+    def test_eye_bleach_reddit_returns_nothing(self, mock_hot_submissions, mock_bot_message):
+        returned = [
+            self.fake_reddit_post('reddit.com'),
+            self.fake_reddit_post('reddit.com'),
+            self.fake_reddit_post('reddit.com'),
+            self.fake_reddit_post('reddit.com'),
+            self.fake_reddit_post('reddit.com')
+        ]
+
+        # Setup Mock
+        mock_hot_submissions.return_value = returned
+
+        # Call Test Method
+        commands.eye_bleach()
+
+        # Verify Mock
+        mock_bot_message.assert_not_called()
 
 
 class TestCrellPic(object):
-    pass
+    def setup(self):
+        self.image_file = os.path.join(test_resources_root, 'test_crell_images.txt')
+
+    @mock.patch('commands.bot_image_message')
+    def test_crell_pic_chooses_image_from_file(self, mock_bot_image_message):
+        commands.crell_pic(self.image_file)
+
+        # Verify Mock
+        mock_bot_image_message.assert_called_once_with('test_image_to_use')
+
+    @mock.patch('commands.bot_image_message')
+    def test_crell_pic_throws_error_when_theres_no_file(self, mock_bot_image_message):
+        with pytest.raises(FileNotFoundError):
+            commands.crell_pic('NOT_A_FILE')
+
+        # Verify Mock
+        mock_bot_image_message.assert_not_called()

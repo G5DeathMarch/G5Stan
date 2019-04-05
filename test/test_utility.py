@@ -5,13 +5,15 @@ file.
 
 import pytest  # test library
 import mock  # mocking library
-from test.helpers import *
+from .helpers import *
 import utility  # What we're testing
 # libraries used, that we need to mock.
 import requests
 import praw
 import os
 import random
+
+test_resources_root = os.path.join(os.path.dirname(__file__), 'resources')
 
 
 class TestBotMessage(object):
@@ -260,7 +262,7 @@ class TestObtainHotSubmission(object):
 
         # call the function
         returned_value = utility.obtain_hot_submissions(subreddit_call,
-                                                      num_of_sub=self.limit)
+                                                        num_of_sub=self.limit)
 
         # make sure that the functions were called the correct number
         # of times and with the correct arguments
