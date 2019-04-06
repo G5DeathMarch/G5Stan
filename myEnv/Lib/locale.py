@@ -1603,7 +1603,7 @@ windows_locale = {
 
 def _print_locale():
 
-    """ test function.
+    """ Test function.
     """
     categories = {}
     def _init_categories(categories=categories):

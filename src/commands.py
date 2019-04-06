@@ -2,7 +2,7 @@ import requests
 import sys
 import os
 import random
-from utility import bot_message, bot_image_message, invalid_search, obtain_hot_submissions
+from utility import *
 
 
 def get_image(search_term, gif_limit=1):
@@ -79,13 +79,20 @@ def eye_bleach():
             bot_message(submission.url)
             sub_count += 1
 
-def atGroup(group_message, group_id):
+
+def crell_pic(image_file):
+    with open(image_file) as pics:
+        image = random.choice(pics.readlines())
+        bot_image_message(image)
+
+
+def at_group(group_message, group_id):
     """
     Stan will first grab all the members in the group and then
     send them a message that should give them a notification
     """
     print("Send message: {0}\nTo Group: {1}".format(group_message, group_id))
-    members = getMembers(group_id)
+    members = get_members(group_id)
     mention_text = ''
     locations_length = []
     uid = []
@@ -102,9 +109,3 @@ def atGroup(group_message, group_id):
     mention_text += ' ' + group_message
     print("mention text: {}".format(mention_text))
     mention(mention_text, locations_length, uid)
-
-
-def crell_pic(image_file):
-    with open(image_file) as pics:
-        image = random.choice(pics.readlines())
-        bot_image_message(image)

@@ -30,7 +30,7 @@ def result():
     elif message.startswith('@group '):
         group_message = message[7:]
         group_id = r['group_id']
-        commands.atGroup(group_message, group_id)
+        commands.at_group(group_message, group_id)
     return "Success"
 
 

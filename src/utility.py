@@ -8,8 +8,8 @@ import os
 import praw
 import random
 
-API_PATH = 'https://api.groupme.com/v3'
-BASE_URL = 'https://api.groupme.com/v3/bots/post'
+API_PATH = 'https://api.groupme.com/v3'  # pragma: no cover
+BASE_URL = 'https://api.groupme.com/v3/bots/post'  # pragma: no cover
 
 
 # sends a standard message to the group
@@ -59,21 +59,6 @@ def mention(message, mention_indices, mention_uids):
     r = requests.post(BASE_URL, json=values)
 
 
-def get_members(group_id):
-    """
-    Will grab all the current members in the group and return
-    them.
-    """
-    token = os.environ.get('GROUPME_TOKEN')    
-    url_string = '{0}/groups/{1}?token={2}'.format(API_PATH, group_id, token)
-    r = requests.get(url_string)
-    json = r.json()
-
-    print("Members: {}".format(json['response']['members']))
-
-    return json['response']['members']
-
-
 def invalid_search():
     with open('resources/failed_search.txt') as sayings:
         message = random.choice(sayings.readlines()).strip()
@@ -82,9 +67,9 @@ def invalid_search():
 
 def obtain_hot_submissions(subreddit_name, num_of_sub=1):
     """
-    Will take a subreddit string, and will grab a 
-    number of urls and return them. The subreddit 
-    string doesn't need the r/, but we'll make sure to 
+    Will take a subreddit string, and will grab a
+    number of urls and return them. The subreddit
+    string doesn't need the r/, but we'll make sure to
     get rid of it before hand.
     """
     # remove the r/ from the subreddit name
@@ -100,3 +85,18 @@ def obtain_hot_submissions(subreddit_name, num_of_sub=1):
     subreddit = reddit.subreddit(subreddit_name)
 
     return subreddit.hot(limit=num_of_sub)
+
+
+def get_members(group_id):
+    """
+    Will grab all the current members in the group and return
+    them.
+    """
+    token = os.environ.get('GROUPME_TOKEN')    
+    url_string = '{0}/groups/{1}?token={2}'.format(API_PATH, group_id, token)
+    r = requests.get(url_string)
+    json = r.json()
+
+    print("Members: {}".format(json['response']['members']))
+
+    return json['response']['members']

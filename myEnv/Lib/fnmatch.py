@@ -17,7 +17,7 @@ import functools
 __all__ = ["filter", "fnmatch", "fnmatchcase", "translate"]
 
 def fnmatch(name, pat):
-    """test whether FILENAME matches PATTERN.
+    """Test whether FILENAME matches PATTERN.
 
     Patterns are Unix shell style:
 
@@ -62,7 +62,7 @@ def filter(names, pat):
     return result
 
 def fnmatchcase(name, pat):
-    """test whether FILENAME matches PATTERN, including case.
+    """Test whether FILENAME matches PATTERN, including case.
 
     This is a version of fnmatch() which doesn't case-normalize
     its arguments.

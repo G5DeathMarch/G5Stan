@@ -160,7 +160,7 @@ class TestHelpMeStan(object):
 
 class TestEyeBleach(object):
 
-    class fake_reddit_post(object):
+    class FakeRedditPost(object):
         def __init__(self, url):
             self.url = url
 
@@ -168,11 +168,11 @@ class TestEyeBleach(object):
     @mock.patch('commands.obtain_hot_submissions')
     def test_eye_bleach_only_gets_non_reddit_com_urls(self, mock_hot_submissions, mock_bot_message):
         returned = [
-            self.fake_reddit_post('something.reddit.com'),
-            self.fake_reddit_post('valid.com'),
-            self.fake_reddit_post('another.reddit.com'),
-            self.fake_reddit_post('another.reddit.com'),
-            self.fake_reddit_post('valid.com')
+            self.FakeRedditPost('something.reddit.com'),
+            self.FakeRedditPost('valid.com'),
+            self.FakeRedditPost('another.reddit.com'),
+            self.FakeRedditPost('another.reddit.com'),
+            self.FakeRedditPost('valid.com')
         ]
 
         expected_calls = [
@@ -193,11 +193,11 @@ class TestEyeBleach(object):
     @mock.patch('commands.obtain_hot_submissions')
     def test_eye_bleach_only_gets_a_max_of_3_urls(self, mock_hot_submissions, mock_bot_message):
         returned = [
-            self.fake_reddit_post('valid.com'),
-            self.fake_reddit_post('valid.com'),
-            self.fake_reddit_post('valid.com'),
-            self.fake_reddit_post('valid.com'),
-            self.fake_reddit_post('valid.com')
+            self.FakeRedditPost('valid.com'),
+            self.FakeRedditPost('valid.com'),
+            self.FakeRedditPost('valid.com'),
+            self.FakeRedditPost('valid.com'),
+            self.FakeRedditPost('valid.com')
         ]
 
         expected_calls = [
@@ -219,11 +219,11 @@ class TestEyeBleach(object):
     @mock.patch('commands.obtain_hot_submissions')
     def test_eye_bleach_reddit_returns_nothing(self, mock_hot_submissions, mock_bot_message):
         returned = [
-            self.fake_reddit_post('reddit.com'),
-            self.fake_reddit_post('reddit.com'),
-            self.fake_reddit_post('reddit.com'),
-            self.fake_reddit_post('reddit.com'),
-            self.fake_reddit_post('reddit.com')
+            self.FakeRedditPost('reddit.com'),
+            self.FakeRedditPost('reddit.com'),
+            self.FakeRedditPost('reddit.com'),
+            self.FakeRedditPost('reddit.com'),
+            self.FakeRedditPost('reddit.com')
         ]
 
         # Setup Mock

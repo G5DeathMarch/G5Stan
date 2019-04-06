@@ -58,7 +58,7 @@ def normcase(s):
 # Trivial in Posix, harder on the Mac or MS-DOS.
 
 def isabs(s):
-    """test whether a path is absolute"""
+    """Test whether a path is absolute"""
     sep = _get_sep(s)
     return s.startswith(sep)
 
@@ -156,7 +156,7 @@ def dirname(p):
 # This will always return false on systems where os.lstat doesn't exist.
 
 def islink(path):
-    """test whether a path is a symbolic link"""
+    """Test whether a path is a symbolic link"""
     try:
         st = os.lstat(path)
     except (OSError, AttributeError):
@@ -166,7 +166,7 @@ def islink(path):
 # Being true for dangling symbolic links is also useful.
 
 def lexists(path):
-    """test whether a path exists.  Returns True for broken symbolic links"""
+    """Test whether a path exists.  Returns True for broken symbolic links"""
     try:
         os.lstat(path)
     except OSError:
@@ -178,7 +178,7 @@ def lexists(path):
 # (Does this work for all UNIXes?  Is it even guaranteed to work by Posix?)
 
 def ismount(path):
-    """test whether a path is a mount point"""
+    """Test whether a path is a mount point"""
     try:
         s1 = os.lstat(path)
     except OSError:
