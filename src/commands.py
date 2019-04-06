@@ -84,28 +84,3 @@ def crell_pic(image_file):
     with open(image_file) as pics:
         image = random.choice(pics.readlines())
         bot_image_message(image)
-
-
-def at_group(group_message, group_id):
-    """
-    Stan will first grab all the members in the group and then
-    send them a message that should give them a notification
-    """
-    print("Send message: {0}\nTo Group: {1}".format(group_message, group_id))
-    members = get_members(group_id)
-    mention_text = ''
-    locations_length = []
-    uid = []
-    index = 0
-    for member in members:
-        mention_text += '@' + member['nickname'] + ' '
-        uid.append(member['user_id'])
-        # The length needs to be @ + nickname
-        locations_length.append([index, len(member['nickname']) + 1])
-        # we need to have the index increase by the @(1) + length of nickname + space(1)
-        # or just the mention text length
-        index += len(mention_text)
-        
-    mention_text += ' ' + group_message
-    print("mention text: {}".format(mention_text))
-    mention(mention_text, locations_length, uid)
