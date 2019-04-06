@@ -95,7 +95,7 @@ def normcase(s):
 # starts with a slash or backslash.
 
 def isabs(s):
-    """Test whether a path is absolute"""
+    """test whether a path is absolute"""
     s = splitdrive(s)[1]
     return len(s) > 0 and s[:1] in _get_bothseps(s)
 
@@ -256,7 +256,7 @@ def dirname(p):
 # This will always return false on systems where os.lstat doesn't exist.
 
 def islink(path):
-    """Test whether a path is a symbolic link.
+    """test whether a path is a symbolic link.
     This will always return false for Windows prior to 6.0.
     """
     try:
@@ -268,7 +268,7 @@ def islink(path):
 # Being true for dangling symbolic links is also useful.
 
 def lexists(path):
-    """Test whether a path exists.  Returns True for broken symbolic links"""
+    """test whether a path exists.  Returns True for broken symbolic links"""
     try:
         st = os.lstat(path)
     except OSError:
@@ -290,7 +290,7 @@ try:
 except ImportError:
     _getvolumepathname = None
 def ismount(path):
-    """Test whether a path is a mount point (a drive root, the root of a
+    """test whether a path is a mount point (a drive root, the root of a
     share, or a mounted volume)"""
     seps = _get_bothseps(path)
     path = abspath(path)

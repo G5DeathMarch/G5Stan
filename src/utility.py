@@ -1,30 +1,40 @@
-import requests, sys, os, praw, random
+"""
+File that contains functions that provide us some common
+functionality for other classes / files
+"""
+
+import requests
+import os
+import praw
+import random
 
 API_PATH = 'https://api.groupme.com/v3'
-
-#sends a standard message to the group
 BASE_URL = 'https://api.groupme.com/v3/bots/post'
 
-def botMessage(message):
+
+# sends a standard message to the group
+def bot_message(message):
     bot_id = os.environ.get('BOT_ID')
     values = {
-        'bot_id' : bot_id,
-        'text' : str(message),
+        'bot_id': bot_id,
+        'text': str(message),
     }
     print("send message values: {}".format(values))
-    r = requests.post(BASE_URL, json = values)
+    r = requests.post(BASE_URL, json=values)
 
-def botImageMessage(image_url):
+
+def bot_image_message(image_url):
     bot_id = os.environ.get('BOT_ID')
     values = {
-            'bot_id' : bot_id,
-            'attachments' : [{
-                'type' : 'image',
-                'url' : image_url.strip()
+            'bot_id': bot_id,
+            'attachments': [{
+                'type': 'image',
+                'url': image_url.strip()
             }]
     }
     print("send image values: {}".format(values))
-    r = requests.post(BASE_URL, json = values)
+    r = requests.post(BASE_URL, json=values)
+
 
 def mention(message, mention_indices, mention_uids):
     """
@@ -35,20 +45,21 @@ def mention(message, mention_indices, mention_uids):
     """
     bot_id = os.environ.get('BOT_ID')
     values = {
-        'bot_id' : bot_id,
-        'text' : str(message),
-        'attachments' : {
-            'type' : 'mentions',
-            'loci' : mention_indices,
-            'user_ids' : mention_uids
+        'bot_id': bot_id,
+        'text': str(message),
+        'attachments': {
+            'type': 'mentions',
+            'loci': mention_indices,
+            'user_ids': mention_uids
         }
     }
 
     print("mention values: {}".format(values))
 
-    r = requests.post(BASE_URL, json = values)
+    r = requests.post(BASE_URL, json=values)
 
-def getMembers(group_id):
+
+def get_members(group_id):
     """
     Will grab all the current members in the group and return
     them.
@@ -62,12 +73,14 @@ def getMembers(group_id):
 
     return json['response']['members']
 
-def invalidSearch():
-    with open('failed_search.txt') as sayings:
-        message = random.choice(sayings.readlines()).strip()
-        botMessage(message)
 
-def obtainHotSubmissions(subreddit_name, num_of_sub=1):
+def invalid_search():
+    with open('resources/failed_search.txt') as sayings:
+        message = random.choice(sayings.readlines()).strip()
+        bot_message(message)
+
+
+def obtain_hot_submissions(subreddit_name, num_of_sub=1):
     """
     Will take a subreddit string, and will grab a 
     number of urls and return them. The subreddit 

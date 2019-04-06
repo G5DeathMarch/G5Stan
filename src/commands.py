@@ -2,12 +2,10 @@ import requests
 import sys
 import os
 import random
-from utility import (botMessage, invalidSearch,
- obtainHotSubmissions, getMembers, mention)
+from utility import bot_message, bot_image_message, invalid_search, obtain_hot_submissions
 
-GIF_LIMIT = 1
 
-def getImage(searchTerm):
+def get_image(search_term, gif_limit=1):
     """
     Stan searches the GIFY API for a gif that matches the search 
     term.
@@ -15,37 +13,39 @@ def getImage(searchTerm):
     url = "http://api.giphy.com/v1/gifs/search"
     key = os.environ.get('GIPHY_KEY')
     payload = {
-        'q':searchTerm,
-        'limit': GIF_LIMIT,
-        'api_key':key
+        'q': search_term,
+        'limit': gif_limit,
+        'api_key': key
     }
     try:
         request = requests.get(url, params=payload)
         # lets grab a random gif from the returned images.
         gif = random.choice(request.json()['data'])
         message = gif['images']['downsized']['url']
-        botMessage(message)
-    except:
+        bot_message(message)
+    except requests.RequestException:
         # If we failed to find something from our search,
         # we send back an error message. Stan style.
-        invalidSearch()
-    
-def cheerUp():
+        invalid_search()
+
+
+def cheer_up(cheerup_file):
     """
     Stan sends a message that will cheer up the members of the group
     chat.
     """
-    with open('compliments.txt') as compliments:
+    with open(cheerup_file) as compliments:
         message = random.choice(compliments.readlines()).strip()
-        botMessage(message)
+        bot_message(message)
 
-def helpMeStan():
+
+def help_me_stan(readme_file):
     """
     Will detail what stan can do and will use the README
     to grab all the information about the different functions
     """
     function_lines = []
-    with open('README.md') as readme:
+    with open(readme_file) as readme:
         for line in readme:
             # We're checking to see if we hit the string that
             # shows when we're talking about commands
@@ -59,9 +59,10 @@ def helpMeStan():
                     function_lines.append(line)
         
         message = ''.join(function_lines)
-        botMessage(message)
+        bot_message(message)
 
-def eyeBleach():
+
+def eye_bleach():
     """
     Will send 3 gifs/images that will be of adorable things that
     should cover up the current conversation screen. We'll just
@@ -69,13 +70,13 @@ def eyeBleach():
     """
     # we're going to grab the top five incase one of the submissions
     # is a reddit text post, then we can filter it out.
-    submissions = obtainHotSubmissions('eyebleach', num_of_sub=5)
+    submissions = obtain_hot_submissions('eyebleach', num_of_sub=5)
 
     sub_count = 0
 
     for submission in submissions:
         if 'reddit.com' not in submission.url and sub_count < 3:
-            botMessage(submission.url)
+            bot_message(submission.url)
             sub_count += 1
 
 def atGroup(group_message, group_id):
@@ -101,8 +102,9 @@ def atGroup(group_message, group_id):
     mention_text += ' ' + group_message
     print("mention text: {}".format(mention_text))
     mention(mention_text, locations_length, uid)
-  
-def crellPic():
-    with open('image_links.txt') as pics:
+
+
+def crell_pic(image_file):
+    with open(image_file) as pics:
         image = random.choice(pics.readlines())
-        botImageMessage(image) 
+        bot_image_message(image)

@@ -843,7 +843,7 @@ class TarInfo(object):
         info["magic"] = POSIX_MAGIC
         pax_headers = self.pax_headers.copy()
 
-        # Test string fields for values that exceed the field length or cannot
+        # test string fields for values that exceed the field length or cannot
         # be represented in ASCII encoding.
         for name, hname, length in (
                 ("name", "path", LENGTH_NAME), ("linkname", "linkpath", LENGTH_LINK),
@@ -863,7 +863,7 @@ class TarInfo(object):
             if len(info[name]) > length:
                 pax_headers[hname] = info[name]
 
-        # Test number fields for values that exceed the field limit or values
+        # test number fields for values that exceed the field limit or values
         # that like to be stored as float.
         for name, digits in (("uid", 8), ("gid", 8), ("size", 12), ("mtime", 12)):
             if name in pax_headers:
@@ -2442,7 +2442,7 @@ def main():
                        metavar=('<name>', '<file>'),
                        help='Create tarfile from sources')
     group.add_argument('-t', '--test', metavar='<tarfile>',
-                       help='Test if a tarfile is valid')
+                       help='test if a tarfile is valid')
     args = parser.parse_args()
 
     if args.test:

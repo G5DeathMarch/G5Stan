@@ -1,5 +1,4 @@
 import os
-import inspect
 import commands
 from flask import Flask, request
 app = Flask(__name__)
@@ -7,33 +6,33 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def result():
-    #receive JSON from groupme request containing message information       
+    # receive JSON from groupme request containing message information
     r = request.get_json(force=True)
-    #send .gif message
+    # send .gif message
     message = r['text']
     print("request: {}".format(r))
     if message.startswith('/gif '):
-        searchTerm = message[5:]
-        commands.getImage(searchTerm)
+        search_term = message[5:]
+        commands.get_image(search_term)
     # send cheerUp message
     elif message.startswith('/cheerup'):
-        commands.cheerUp()
+        commands.cheer_up('resources/compliments.txt')
     # Help message
     elif message.startswith('/helpmestan'):
-        commands.helpMeStan()
-    # Eyebleach
+        commands.help_me_stan('../README.md')
+    # Eye-bleach
     elif message.startswith('/eyebleach'):
-        commands.eyeBleach()
+        commands.eye_bleach()
     # Crell memes
     elif message.startswith('/crell'):
-        commands.crellPic()
+        commands.crell_pic('resources/image_links.txt')
     # @group
     elif message.startswith('@group '):
         group_message = message[7:]
         group_id = r['group_id']
         commands.atGroup(group_message, group_id)
-
     return "Success"
+
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.

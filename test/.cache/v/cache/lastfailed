@@ -1,0 +1,17 @@
+{
+  "test_commands.py": true,
+  "test_commands.py::TestCheerUp::()::test_cheer_up_get_compliments_from_a_file_that_doesnt_exist": true,
+  "test_commands.py::TestGetImage::test_get_image": true,
+  "test_commands.py::TestGetImage::test_get_image_no_environment_key": true,
+  "test_utility.py": true,
+  "test_utility.py::TestBotImageMessage::test_bot_image_message": true,
+  "test_utility.py::TestBotImageMessage::test_bot_image_message_empty_url": true,
+  "test_utility.py::TestBotImageMessage::test_bot_image_message_url_with_extra_spaces": true,
+  "test_utility.py::TestBotMessage::test_bot_message": true,
+  "test_utility.py::TestBotMessage::test_bot_message_empty_string": true,
+  "test_utility.py::TestObtainHotSubmission::test_obtain_hot_submissions_empty_string": true,
+  "test_utility.py::TestObtainHotSubmission::test_obtain_hot_submissions_with_0_limit": true,
+  "test_utility.py::TestObtainHotSubmission::test_obtain_hot_submissions_with_higher_limit": true,
+  "test_utility.py::TestObtainHotSubmission::test_obtain_hot_submissions_with_r_slash": true,
+  "test_utility.py::TestObtainHotSubmission::test_obtain_hot_submissions_without_r_slash": true
+}
