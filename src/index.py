@@ -28,11 +28,6 @@ def result():
     # Crell memes
     elif message.startswith('/crell'):
         commands.crell_pic(os.path.join(ROOT, 'resources', 'image_links.txt'))
-    # @group
-    elif message.startswith('@group '):
-        group_message = message[7:]
-        group_id = r['group_id']
-        commands.at_group(group_message, group_id)
     return "Success"
 
 

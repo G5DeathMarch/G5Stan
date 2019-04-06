@@ -37,29 +37,6 @@ def bot_image_message(image_url):
     r = requests.post(BASE_URL, json=values)
 
 
-def mention(message, mention_indices, mention_uids):
-    """
-    Sends a message that has a mention in the text.
-    message should contain the @mentions 
-    mention_indices array of arrays that contain [index, length]
-    mention_uids: array of user ids, should match with the mention_indices
-    """
-    bot_id = os.environ.get('BOT_ID')
-    values = {
-        'bot_id': bot_id,
-        'text': str(message),
-        'attachments': {
-            'type': 'mentions',
-            'loci': mention_indices,
-            'user_ids': mention_uids
-        }
-    }
-
-    print("mention values: {}".format(values))
-
-    r = requests.post(BASE_URL, json=values)
-
-
 def invalid_search():
     with open(os.path.join(ROOT, 'resources', 'failed_search.txt')) as sayings:
         message = random.choice(sayings.readlines()).strip()
@@ -86,18 +63,3 @@ def obtain_hot_submissions(subreddit_name, num_of_sub=1):
     subreddit = reddit.subreddit(subreddit_name)
 
     return subreddit.hot(limit=num_of_sub)
-
-
-def get_members(group_id):
-    """
-    Will grab all the current members in the group and return
-    them.
-    """
-    token = os.environ.get('GROUPME_TOKEN')    
-    url_string = '{0}/groups/{1}?token={2}'.format(API_PATH, group_id, token)
-    r = requests.get(url_string)
-    json = r.json()
-
-    print("Members: {}".format(json['response']['members']))
-
-    return json['response']['members']
