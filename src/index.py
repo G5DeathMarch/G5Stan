@@ -3,6 +3,8 @@ import commands
 from flask import Flask, request
 app = Flask(__name__)
 
+ROOT = os.path.dirname(__file__)
+
 
 @app.route('/', methods=['POST'])
 def result():
@@ -16,16 +18,16 @@ def result():
         commands.get_image(search_term)
     # send cheerUp message
     elif message.startswith('/cheerup'):
-        commands.cheer_up('resources/compliments.txt')
+        commands.cheer_up(os.path.join(ROOT, 'resources', 'compliments.txt'))
     # Help message
     elif message.startswith('/helpmestan'):
-        commands.help_me_stan('../README.md')
+        commands.help_me_stan(os.path.join(ROOT, '..', 'README.md'))
     # Eye-bleach
     elif message.startswith('/eyebleach'):
         commands.eye_bleach()
     # Crell memes
     elif message.startswith('/crell'):
-        commands.crell_pic('resources/image_links.txt')
+        commands.crell_pic(os.path.join(ROOT, 'resources', 'image_links.txt'))
     # @group
     elif message.startswith('@group '):
         group_message = message[7:]

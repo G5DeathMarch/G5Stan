@@ -10,6 +10,7 @@ import random
 
 API_PATH = 'https://api.groupme.com/v3'  # pragma: no cover
 BASE_URL = 'https://api.groupme.com/v3/bots/post'  # pragma: no cover
+ROOT = os.path.dirname(__file__)
 
 
 # sends a standard message to the group
@@ -60,7 +61,7 @@ def mention(message, mention_indices, mention_uids):
 
 
 def invalid_search():
-    with open('resources/failed_search.txt') as sayings:
+    with open(os.path.join(ROOT, 'resources', 'failed_search.txt')) as sayings:
         message = random.choice(sayings.readlines()).strip()
         bot_message(message)
 
